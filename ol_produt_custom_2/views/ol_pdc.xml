@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<record id="test_field_form_2" model="ir.ui.view">
+            <field name="name">test.inherit.view.form</field>
+            <field name="model">brand.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <form string="Group">
+                     <sheet>
+                         <group>
+
+                             <group>
+
+                      <field name="name" required="1"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+
+                                 </group>
+
+                         </group>
+
+
+                    </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+
+        <record id="test_tree_field_2" model="ir.ui.view">
+            <field name="name">test.inherit.view.form</field>
+            <field name="model">brand.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <tree>
+
+
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+
+
+
+                </tree>
+
+            </field>
+        </record>
+
+
+
+        <record id="form_credent" model="ir.actions.act_window">
+        <field name="name">Add New Instance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">brand.custom</field>
+        <field name="view_mode">tree,kanban,form</field>
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                No Instance Found-->
+<!--            </p>-->
+<!--        </field>-->
+
+    </record>
+
+<!--        sub group-->
+<record id="test_field_form_3" model="ir.ui.view">
+            <field name="name">sub.group.custom.view.form</field>
+            <field name="model">sub.group.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <form>
+                     <sheet>
+                         <group>
+
+                      <field name="name" required="1"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+                        <field name="grp_id"/>
+
+
+                         </group>
+
+                    </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+
+        <record id="test_tree_field_3" model="ir.ui.view">
+            <field name="name">sub.group.custom.view.form</field>
+            <field name="model">sub.group.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <tree>
+
+
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+
+
+
+                </tree>
+
+            </field>
+        </record>
+
+
+
+            <record id="form_credent_3" model="ir.actions.act_window">
+        <field name="name">Add New Instance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sub.group.custom</field>
+        <field name="view_mode">tree,kanban,form</field>
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                No Instance Found-->
+<!--            </p>-->
+<!--        </field>-->
+
+    </record>
+
+
+<!--        sub sub group-->
+
+        <record id="test_field_form_4" model="ir.ui.view">
+            <field name="name">sub.sub.group.custom.view.form</field>
+            <field name="model">sub.sub.group.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <form>
+                     <sheet>
+                         <group>
+
+                      <field name="name" required="1"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+                        <field name="sub_grp_id"/>
+
+                         </group>
+
+                    </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+
+        <record id="test_tree_field_4" model="ir.ui.view">
+            <field name="name">sub.sub.group.custom.view.form</field>
+            <field name="model">sub.sub.group.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <tree>
+
+
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+
+
+
+                </tree>
+
+            </field>
+        </record>
+
+
+
+            <record id="form_credent_4" model="ir.actions.act_window">
+        <field name="name">Add New Instance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sub.sub.group.custom</field>
+        <field name="view_mode">tree,kanban,form</field>
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                No Instance Found-->
+<!--            </p>-->
+<!--        </field>-->
+
+    </record>
+
+<!--        brand-->
+                <record id="test_field_form_5" model="ir.ui.view">
+            <field name="name">brand.main.custom.view.form</field>
+            <field name="model">brand.main.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <form>
+                     <sheet>
+                         <group>
+
+                      <field name="name" required="1"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+
+                         </group>
+
+                    </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+
+        <record id="test_tree_field_4" model="ir.ui.view">
+            <field name="name">brand.main.custom.view.form</field>
+            <field name="model">brand.main.custom</field>
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+            <field name="arch" type="xml">
+                  <tree>
+
+
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="discription"/>
+
+
+
+                </tree>
+
+            </field>
+        </record>
+
+
+
+            <record id="form_credent_5" model="ir.actions.act_window">
+        <field name="name">Add New Instance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">brand.main.custom</field>
+        <field name="view_mode">tree,kanban,form</field>
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                No Instance Found-->
+<!--            </p>-->
+<!--        </field>-->
+
+    </record>
+
+
+
+
+
+    	<menuitem id="menu_action_ar"
+            name="Other Information"
+                  parent="stock.menu_stock_root"
+                  sequence="100"
+
+            />
+        <menuitem id="menu_action_ar_2"
+            name="Group"
+                  parent="menu_action_ar"
+                  action="form_credent"
+            />
+
+        <menuitem id="menu_action_ar_3"
+            name="Sub Group"
+                  parent="menu_action_ar"
+                  action="form_credent_3"
+            />
+        <menuitem id="menu_action_ar_4"
+            name="Sub Sub Group"
+                  parent="menu_action_ar"
+                  action="form_credent_4"
+            />
+        <menuitem id="menu_action_ar_5"
+            name="Brand"
+                  parent="menu_action_ar"
+                  action="form_credent_5"
+            />
+
+    <record model="ir.ui.view" id="view_inherit_product_product_form">
+    <field name="name">product.product.form</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_normal_form_view"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+         <xpath expr="//field[@name='categ_id']" position="after">
+<!--         <xpath expr="/form/sheet/notebook/page/field[@name='standard_price']" position="inside">-->
+
+                   <field name="brand_id"/>
+                   <field name="grp_id"/>
+                   <field name="sub_grp_id" attrs="{'invisible': [('grp_id', '=', False)]}"/>
+                   <field name="sub_sub_grp_id" attrs="{'invisible': ['|',('sub_grp_id', '=', False),('grp_id', '=', False)]}"/>
+
+
+         </xpath>
+
+    </field>
+</record>
+
+
+    <record model="ir.ui.view" id="view_inherit_product_product_search">
+    <field name="name">product.product.form.search</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_search_form_view"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+         <xpath expr="//search" position="inside">
+                </xpath>
+
+    </field>
+</record>
+
+     <record model="ir.ui.view" id="view_inherit_product_product_search_panel_in_tree_view">
+    <field name="name">product.product.form.search</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_search_form_view"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <xpath expr ="//search" position ="inside">
+          <searchpanel>
+                        <field name="brand_id" string="Brand" select="multi" enable_counters="1"/>
+                        <field name="grp_id" string="Group" select="multi" enable_counters="1"/>
+                        <field name="sub_grp_id" string="Sub Group" select="multi"  enable_counters="1"/>
+                        <field name="sub_sub_grp_id" string="Sub Sub Group" select="multi"  enable_counters="1"/>
+
+           </searchpanel>
+        </xpath>
+
+    </field>
+</record>
+
+
+
+
+    </data>
+</odoo>
+
+
+
+
+
+
+
+
+
