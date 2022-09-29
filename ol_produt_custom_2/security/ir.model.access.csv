@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+inherit_menu_product_pro,inherit_menu_product_pro,model_brand_custom,,1,1,1,1
+sub_group_form_inventory,sub_group_form_inventory,model_sub_group_custom,,1,1,1,1
+sub_sub_group_form_inventory,sub_sub_group_form_inventory,model_sub_sub_group_custom,,1,1,1,1
+brand_form_inventory,brand_form_inventory,model_brand_main_custom,,1,1,1,1

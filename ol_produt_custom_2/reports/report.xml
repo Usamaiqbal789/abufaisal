@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+<!--        <record id="report_post_view_paper" model="report.paperformat">-->
+<!--        <field name="name">Challan</field>-->
+<!--        <field name="default" eval="True"/>-->
+<!--        <field name="format">A4</field>-->
+<!--        <field name="page_height">0</field>-->
+<!--        <field name="page_width">0</field>-->
+<!--        <field name="orientation">Landscape</field>-->
+<!--        <field name="margin_top">3</field>-->
+<!--        <field name="margin_bottom">3</field>-->
+<!--        <field name="margin_left">3</field>-->
+<!--        <field name="margin_right">3</field>-->
+<!--        <field name="header_line" eval="False"/>-->
+<!--        <field name="header_spacing">3</field>-->
+<!--        <field name="dpi">80</field>-->
+<!--    </record>-->
+
+<!--<report-->
+<!--            id="report_final_sale_order"-->
+<!--            model="sale.order"-->
+<!--            report_type="qweb-pdf"-->
+<!--            string="Lasani Flour Mills"-->
+<!--            name="ol_pdc.final_sale_order_template"-->
+<!--            file="ol_pdc.final_sale_order_template"-->
+<!--            paperformat="ol_pdc.report_post_view_paper"-->
+<!--        />-->
+</openerp>
