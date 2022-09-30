@@ -305,6 +305,7 @@
                     <field name="multi_images"></field>
                 </page>
             </xpath>
+        </field>
     </record>
 
     <record model="ir.ui.view" id="view_inherit_product_product_search">
