@@ -5,10 +5,13 @@ import base64
 import requests
 import datetime
 
+class ProdTemp(models.Model):
+    multi_images = fields.One2many(comodel_name='product.multi.images', inverse_name='product_id', string='Multi Images')    
+    
+
 class accountmove(models.Model):
     _inherit = 'product.product'
 
-    multi_images = fields.One2many(comodel_name='product.multi.images', inverse_name='product_id', string='Multi Images')    
     brand_id = fields.Many2one('brand.main.custom',  string="Brand")
     grp_id = fields.Many2one('brand.custom',  string="Group")
     sub_grp_id = fields.Many2one('sub.group.custom',  string="Sub Group")
@@ -77,5 +80,5 @@ class MultiImages(models.Model):
     _name='product.multi.images'
     name = fields.Char(string='Discription')
     images = fields.Binary(string='Images')
-    product_id = fields.Many2one(comodel_name='product.product', string='Product ID')
+    product_id = fields.Many2one(comodel_name='product.template', string='Product ID')
     
