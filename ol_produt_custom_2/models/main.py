@@ -6,6 +6,7 @@ import requests
 import datetime
 
 class ProdTemp(models.Model):
+    _inherit = 'product.template'
     multi_images = fields.One2many(comodel_name='product.multi.images', inverse_name='product_id', string='Multi Images')    
     
 
