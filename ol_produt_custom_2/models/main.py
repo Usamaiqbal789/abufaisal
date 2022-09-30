@@ -1,3 +1,4 @@
+from email.mime import image
 from odoo import models, fields,api
 from odoo.exceptions import UserError
 import base64
@@ -7,7 +8,7 @@ import datetime
 class accountmove(models.Model):
     _inherit = 'product.product'
 
-
+    multi_images = fields.One2many(comodel_name='product.multi.images', inverse_name='product_id', string='Multi Images')    
     brand_id = fields.Many2one('brand.main.custom',  string="Brand")
     grp_id = fields.Many2one('brand.custom',  string="Group")
     sub_grp_id = fields.Many2one('sub.group.custom',  string="Sub Group")
@@ -47,15 +48,6 @@ class Brandsclass(models.Model):
     code = fields.Char('Code')
     discription = fields.Char('Discription')
 
-
-
-
-
-
-
-
-
-
 class SubGroupClass(models.Model):
     _name ='sub.group.custom'
 
@@ -64,10 +56,6 @@ class SubGroupClass(models.Model):
     code = fields.Char('Code')
     discription = fields.Char('Discription')
     grp_id = fields.Many2one('brand.custom',string="Group")
-
-
-
-
 
 class SubSubGroupClass(models.Model):
     _name ='sub.sub.group.custom'
@@ -79,13 +67,15 @@ class SubSubGroupClass(models.Model):
     sub_grp_id = fields.Many2one('sub.group.custom',string="Sub Group")
     # brand_main_ids = fields.Many2one('brand.main.custom', string="Brand ID")
 
-
-
-
 class BRandClass(models.Model):
     _name ='brand.main.custom'
-
-
     name = fields.Char('Name',required=True)
     code = fields.Char('Code')
     discription = fields.Char('Discription')
+
+class MultiImages(models.Model):
+    _name='product.multi.images'
+    name = fields.Char(string='Discription')
+    images = fields.Binary(string='Images')
+    product_id = fields.Many2one(comodel_name='product.product', string='Product ID')
+    
