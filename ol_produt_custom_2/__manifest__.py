@@ -10,13 +10,14 @@
     "version": "15.0.1",
 
     "depends": [
-        'sale_management',
+        'sale_management','stock', 'purchase'
     ],
 
     "data": [
         'security/ir.model.access.csv',
         'views/ol_pdc.xml',
         'reports/report.xml',
+        'data/sequence.xml',
         # 'reports/ali_sale_agreement.xml',
         'reports/new_report.xml',
 
