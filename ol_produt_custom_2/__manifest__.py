@@ -10,7 +10,7 @@
     "version": "15.0.1",
 
     "depends": [
-        'sale_management','stock', 'purchase'
+        'sale_management','stock', 'purchase','product'
     ],
 
     "data": [
@@ -18,8 +18,7 @@
         'views/ol_pdc.xml',
         'reports/report.xml',
         'data/sequence.xml',
-        # 'reports/ali_sale_agreement.xml',
-        'reports/new_report.xml',
+        'views/group_product.xml',
 
     ],
     "images": [ ],

@@ -3,3 +3,6 @@ inherit_menu_product_pro,inherit_menu_product_pro,model_brand_custom,,1,1,1,1
 sub_group_form_inventory,sub_group_form_inventory,model_sub_group_custom,,1,1,1,1
 sub_sub_group_form_inventory,sub_sub_group_form_inventory,model_sub_sub_group_custom,,1,1,1,1
 brand_form_inventory,brand_form_inventory,model_brand_main_custom,,1,1,1,1
+product_make_type_form,product_make_type_form,model_product_make_type,,1,1,1,1
+parts_family_form,parts_family_form,model_parts_family,,1,1,1,1
+groups_product_product_from,groups_product_product_from,model_groups_product,,1,1,1,1
