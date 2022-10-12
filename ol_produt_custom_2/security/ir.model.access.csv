@@ -6,3 +6,4 @@ brand_form_inventory,brand_form_inventory,model_brand_main_custom,,1,1,1,1
 product_make_type_form,product_make_type_form,model_product_make_type,,1,1,1,1
 parts_family_form,parts_family_form,model_parts_family,,1,1,1,1
 groups_product_product_from,groups_product_product_from,model_groups_product,,1,1,1,1
+alternative_product_from,alternative_product_product_from,model_alternative_product_line,,1,1,1,1

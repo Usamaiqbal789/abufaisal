@@ -445,16 +445,36 @@
                    <field name="sub_grp_id" widget="many2many_tags" attrs="{'invisible': [('grp_id', '=', False)]}" invisible="1"/>
                    <field name="sub_sub_grp_id" widget="many2many_tags" attrs="{'invisible': ['|',('sub_grp_id', '=', False),('grp_id', '=', False)]}" invisible="1" />
                    <field name="des_arabic"/>
-                   <field name="alternative_products"  widget="many2many_tags"/>
+                     <field name="alternate_product_warning_show" readonly="1" invisible="1"/>
+                    <field name="alternate_product_warning" readonly="1" attrs="{'invisible': [('alternate_product_warning_show','=', False)]}"/>
+                 <field name="alternative_products">
+                       <tree editable="bottom" order="name">
+                           <field name="default_code"/>
+                           <field name="name"/>
+                           <field name="lst_price"/>
+                       </tree>
+                   </field>
+
+
 
 
          </xpath>
         <xpath expr="//field[@name='uom_po_id']" position="after">
              <field name="oem_code"/>
 
-            <field name="own_ref_no"  readonly="1" force_save="1"/>
+            <field name="own_ref_no"/>
+            <field name="origin"/>
+<!--            <field name="product_i"/>-->
+<!--            <field name ="alternative_product_ids" string="Alternative Product Lines"-->
+<!--                                colspan="4" widget="one2many_list">-->
+<!--                 <tree editable='bottom'>-->
+<!--                    <field name="product_id"/>-->
+<!--                    <field name="price_unit"/>-->
+
+<!--                </tree>-->
 
 
+<!--            </field>-->
 
 
 
@@ -496,8 +516,8 @@
 
               <field name="brand_id" string="Brand"/>
               <field name="grp_id" string="Group"/>
-                        <field name="sub_grp_id" string="Sub Group"/>
-                        <field name="sub_sub_grp_id" string="Sub Sub Group"/>
+               <field name="sub_grp_id" string="Sub Group"/>
+                <field name="sub_sub_grp_id" string="Sub Sub Group"/>
 
 
                 </xpath>

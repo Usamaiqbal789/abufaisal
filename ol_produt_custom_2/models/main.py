@@ -16,11 +16,11 @@ class image(models.Model):
 
 
 
-class accountmove(models.Model):
+class AccountmoveINherit(models.Model):
     _inherit = 'product.product'
 
-
-
+    # product_i = fields.Many2one(related="product_variant_id.alternative_product_ids", string='Reference')
+    alternative_product_ids = fields.One2many('alternative.product.line','alternative_product_id')
     brand_id = fields.Many2one('brand.main.custom', string="Brand")
     grp_id = fields.Many2many('brand.custom', string="Group",compute='_group_comp', store=True)
     sub_grp_id = fields.Many2many('sub.group.custom', string="Sub Group" ,compute='_sub_group_comp', store=True)
@@ -34,7 +34,9 @@ class accountmove(models.Model):
                                                string='Product Make Type',
                                                default='')
 
-    own_ref_no = fields.Integer('Own Reference Number')
+    # own_ref_no = fields.Integer('Own Reference Number',compute='check_own_ref_no_dup',store=True)
+    own_ref_no = fields.Char(string='Own Reference', required=False, copy=False, readonly=True, index=True, )
+    origin = fields.Many2one('res.country',string='Origin')
 
     part_num = fields.Char('Part Number')
     part_family = fields.Selection(
@@ -49,6 +51,14 @@ class accountmove(models.Model):
         column1='lot_id',
         column2='content_id',
         string='Alternative Products')
+
+    @api.model
+    def create(self, vals):
+        # print(vals.get('name_seq'))
+        if vals.get('own_ref_no', _('New')) == _('New'):
+            vals['own_ref_no'] = self.env['ir.sequence'].next_by_code('product.product') or _('New')
+        result = super(AccountmoveINherit, self).create(vals)
+        return result
 
     @api.depends('group_product_ids', 'group_product_ids.grp_id')
     def _group_comp(self):
@@ -67,7 +77,6 @@ class accountmove(models.Model):
         if self.group_product_ids:
             for g in self.group_product_ids:
                 if g.sub_grp_id:
-                    # return {'domain': {'sub_grp_id': [('grp_id', 'in', self.group_product_ids.grp_id.id)]}}
                     g_ids.append(g.sub_grp_id.id)
             self.sub_grp_id = [(6,0,g_ids)]
         else:
@@ -79,7 +88,6 @@ class accountmove(models.Model):
         if self.group_product_ids:
             for g in self.group_product_ids:
                 if g.sub_sub_grp_id:
-                    # return {'domain': {'sub_sub_grp_id': [('sub_grp_id', 'in', self.group_product_ids.sub_grp_id.id)]}}
                     g_ids.append(g.sub_sub_grp_id.id)
             self.sub_sub_grp_id = [(6,0,g_ids)]
         else:
@@ -131,7 +139,79 @@ class accountmove(models.Model):
             # remove the domain if no contrat is selected
             return {'domain': {'sub_sub_grp_id': []}}
 
+    # # @api.onchange('own_reference')
+    # def check_own_ref_no_dup(self):
+    #     # check_own_ref_no = self.env['product.product'].search([('default_code', '=', self.default_code)])
+    #     self.own_ref_no=1
+    #     if self.own_ref_no:
+    #
+    #         self.own_ref_no= self.own_ref_no+1
+            # if check_own_ref_no:
+            #     for on in check_own_ref_no:
+            #         self.own_ref_no = on.own_ref_no
+            # else:
+            #     last_item = self.env['product.product'].search([('own_ref_no', '!=', False)], order='own_ref_no desc',
+            #                                                    limit=1)
+            #     print(last_item)
+            #     self.own_ref_no = last_item.own_ref_no + 1
+    alternate_product_warning=fields.Char("Warning")
+    alternate_product_warning_show=fields.Char("Warning_show",default=False)
+    @api.onchange('alternative_products','alternative_products.default_code')
+    def check_alternat_product(self):
+        # var = self.env['product.product'].search(['id','=',self.alternative_products.ids])
+        # raise ValidationError(var)
+        all_product = self.alternative_products.ids
 
+        self.alternate_product_warning_show = False
+        self.alternate_product_warning = ""
+
+        thisid=0
+        try:
+            thisid=int(self.id)
+        except :
+            # raise ValidationError(self.id)
+            try:
+                thisid=int(str(self.id)[6:])
+            except:
+                self.alternate_product_warning_show=True
+                self.alternate_product_warning="You cannot add alternate products without saving this product. Please save this product first and then try again."
+                self.write({"alternative_products": [(6, 0, [])]})
+                return
+                # raise UserError("Please save this product first and then try again.")
+        all_product.append(thisid)
+        # raise ValidationError(all_product)
+
+        # raise ValidationError(all_product)
+
+        altproducts = self.env['product.product'].search([('id', 'in', all_product)])
+        for altproduct in altproducts:
+            for id in altproduct.alternative_products.ids:
+                if id not in all_product:
+                    all_product.append(id)
+
+        altproducts = self.env['product.product'].search([('id', 'in', all_product)])
+
+        for altproduct in altproducts:
+            appendableProducts=[i for i in all_product if i!=altproduct.id]
+            altproduct.write({"alternative_products":[(6, 0, appendableProducts)]})
+            print('A',appendableProducts)
+
+
+        appendableProducts = [i for i in all_product if i != self.id]
+        self.write({"alternative_products": [(6, 0, appendableProducts)]})
+        print('B',appendableProducts)
+
+
+
+
+
+
+
+
+
+
+
+        # for i in
 
     # @api.depends('group_product_ids', 'group_product_ids.grp_id')
     # def set_domain_sub_grp(self):
@@ -230,3 +310,16 @@ class PartsFamily(models.Model):
     name = fields.Char('Name',required=True)
     code = fields.Char('Code')
     description = fields.Char('Description')
+
+
+
+
+
+class AlternativeProduct(models.Model):
+    _name = 'alternative.product.line'
+
+    alternative_product_id = fields.Many2one('product.product', string='Alternate Product')
+    product_id = fields.Many2one('product.product', string='Product Name')
+    price_unit = fields.Float(string='Unit Price', default=1)
+
+
