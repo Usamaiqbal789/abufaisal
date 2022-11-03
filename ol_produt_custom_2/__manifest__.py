@@ -15,10 +15,13 @@
 
     "data": [
         'security/ir.model.access.csv',
+        'views/custom_dashboard.xml',
         'views/ol_pdc.xml',
+
         'reports/report.xml',
         'data/sequence.xml',
         'views/group_product.xml',
+
 
     ],
     "images": [ ],

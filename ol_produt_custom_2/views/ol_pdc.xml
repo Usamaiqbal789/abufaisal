@@ -348,7 +348,14 @@
 
 
 
-    	<menuitem id="menu_action_ar"
+<!--    	<menuitem id="menu_action_dashboard"-->
+<!--            name="dashboard"-->
+                   />
+<!--                  parent="stock.menu_stock_root"-->
+<!--                  sequence="100"-->
+
+
+        <menuitem id="menu_action_ar"
             name="Other Information"
                   parent="stock.menu_stock_root"
                   sequence="100"
@@ -465,16 +472,17 @@
             <field name="own_ref_no"/>
             <field name="origin"/>
 <!--            <field name="product_i"/>-->
-<!--            <field name ="alternative_product_ids" string="Alternative Product Lines"-->
-<!--                                colspan="4" widget="one2many_list">-->
-<!--                 <tree editable='bottom'>-->
-<!--                    <field name="product_id"/>-->
-<!--                    <field name="price_unit"/>-->
+            <field name ="product_notes_ids" string="Notes"
+                                colspan="4" widget="one2many_list">
+                 <tree editable='bottom'>
+                    <field name="current_user"/>
+                    <field name="current_date"/>
+                    <field name="des"/>
 
-<!--                </tree>-->
+                </tree>
 
 
-<!--            </field>-->
+            </field>
 
 
 
@@ -486,6 +494,8 @@
          <xpath expr="//field[@name='uom_id']" position="before">
 
              <field name="min_unit_price"/>
+             <field name="trader"/>
+             <field name="export_price"/>
 
 
          </xpath>

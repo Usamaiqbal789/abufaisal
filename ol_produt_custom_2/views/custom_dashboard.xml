@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="product_dashboard_form" model="ir.ui.view">
+            <field name="name">product.bashboard.view.form</field>
+            <field name="model">product.dashboard</field>
+            <field name="arch" type="xml">
+                  <form string="Group">
+                     <sheet>
+                         <group>
+
+                             <group>
+
+                      <field name="product_db_id"  options="{'no_create_edit': True, 'no_create': True}"/>
+
+
+                                 </group>
+                             <group>
+                                 <field name="product_image" widget="image" class="float-left" readonly="1"/>
+
+
+
+                             </group>
+
+                         </group>
+                         <notebook>
+                             <page string="Product Information" name="product information">
+
+                               <group>
+
+
+                                     <group style="width:350px">
+
+<!--                                  <field name="part_no"/>-->
+                                  <field name="part_name" readonly="1"/>
+                                  <field name="own_ref_no" readonly="1"/>
+                                  <field name="spec" readonly="1"/>
+
+                                  </group>
+
+                                   <group style="width:350px">
+
+
+                                  <field name="product_brand" readonly="1"/>
+                                  <field name="parts_fam" readonly="1"/>
+                                   <field name="oem" readonly="1"/>
+                                       <field name="packet_detials" readonly="1"/>
+                                       <field name="eta" readonly="1"/>
+                                       <field name="etd" readonly="1"/>
+
+
+                                  </group>
+<!--                                       <field name ="curr_user_1"/>-->
+                                       <field name ="product_dashboard_notes_ids"
+                                          style="width:350px" >
+                                             <tree style="width:350px"  editable="bottom" delete="false">
+                                                <field name="curr_user" readonly="1"/>
+                                                <field name="curr_date" readonly="1"/>
+                                                <field name="des"/>
+
+                                            </tree>
+
+
+
+            </field>
+                               </group>
+                                        <group>
+                                             <field name="shop_ids"  readonly="1">
+                                                 <tree>
+                                                     <field name="branch"/>
+                                                     <field name="cost"/>
+                                                     <field name="min_price"/>
+                                                     <field name="max_price"/>
+                                                     <field name="trader"/>
+                                                     <field name="export_price"/>
+
+
+                                                 </tree>
+                                             </field>
+
+
+
+                                   <field name="reorder_quan_ids"  readonly="1"/>
+
+                                 </group>
+
+                                     <group>
+                                         <group>
+
+                                     <field name="product_groups_ids" readonly="1">
+                                         <tree>
+                                              <field name="grp_id"/>
+                                              <field name="sub_grp_id"/>
+                                              <field name="sub_sub_grp_id"/>
+
+
+                                         </tree>
+
+
+
+                                     </field>
+                                             </group>
+
+                                       <group>
+                                          <field name="substitute_product"  readonly="1">
+                                                  <tree>
+                                                      <field name="default_code" string="Part Number"/>
+                                                      <field name="name"/>
+                                                      <field name="qty_available"/>
+                                                      <field name="lst_price" string="Max Price"/>
+
+
+
+                                                  </tree>
+                                          </field>
+                                           </group>
+                                     </group>
+
+
+
+
+
+                                    <group>
+                                        <group>
+
+
+                                      <field name="delivery_order_his" style="width:290px"  readonly="1">
+                                          <tree>
+                                         <field name="ref"/>
+                                         <field name="customer"/>
+                                         <field name="shud_date"/>
+                                         <field name="demand"/>
+                                         <field name="done"/>
+<!--                                         <field name="scheduled_date"/>-->
+
+<!--                                         <field name="partner_id"/>-->
+
+
+                                          </tree>
+                                         </field>
+                                            </group>
+
+
+                                          <group>
+                                     <field name="sale_his_id"  readonly="1">
+                                         <tree>
+
+                                             <field style="width:8px" name="order_partner_id"/>
+                                             <field name="product_uom_qty"/>
+                                             <field name="price_subtotal"/>
+
+
+
+                                         </tree>
+                                     </field>
+                                              </group>
+                                        </group>
+                                   <group>
+
+
+
+                                       <group>
+
+                                      <field name="quotation_his_id"  readonly="1">
+
+
+                                      </field>
+
+
+
+                                       </group>
+                                       <group>
+
+                                   <field name="customer_order_ids"  readonly="1"/>
+
+
+
+                                   </group>
+
+
+                                </group>
+<!--                                </group>-->
+
+
+                             </page>
+
+
+
+                         </notebook>
+
+
+                    </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+
+
+         <record model="ir.actions.act_window" id="action_custom_dashboard">
+            <field name="name">Dash Board</field>
+            <field name="res_model">product.dashboard</field>
+            <field name="view_mode">form</field>
+        </record>
+
+
+         <menuitem id="custom_dashboard_menuitem"  name="Dashboard"  action="action_custom_dashboard"  parent="stock.menu_stock_root"  sequence="101"/>
+    </data>
+</odoo>

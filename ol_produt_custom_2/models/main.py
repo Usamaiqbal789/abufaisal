@@ -1,5 +1,6 @@
 from odoo import models, fields,api, _
 from odoo.exceptions import UserError
+from datetime import datetime, timedelta
 import base64
 import requests
 import datetime
@@ -35,7 +36,7 @@ class AccountmoveINherit(models.Model):
                                                default='')
 
     # own_ref_no = fields.Integer('Own Reference Number',compute='check_own_ref_no_dup',store=True)
-    own_ref_no = fields.Char(string='Own Reference', required=False, copy=False, readonly=True, index=True, )
+    own_ref_no = fields.Char(string='Own Reference', required=False, copy=False, index=True, )
     origin = fields.Many2one('res.country',string='Origin')
 
     part_num = fields.Char('Part Number')
@@ -51,6 +52,13 @@ class AccountmoveINherit(models.Model):
         column1='lot_id',
         column2='content_id',
         string='Alternative Products')
+    product_notes_ids = fields.One2many('product.notes.line','notes_id')
+    trader = fields.Float('Trader')
+    export_price = fields.Float('Export Price')
+
+
+
+
 
     @api.model
     def create(self, vals):
@@ -99,7 +107,7 @@ class AccountmoveINherit(models.Model):
 
 
         if self.brand_id:
-            self.default_code= check_brand_name.code
+            self.default_code = check_brand_name.code
 
         else:
             self.default_code=''
@@ -201,15 +209,23 @@ class AccountmoveINherit(models.Model):
         self.write({"alternative_products": [(6, 0, appendableProducts)]})
         print('B',appendableProducts)
 
-
-
-
-
-
-
-
-
-
+    # @api.onchange('product_db_id')
+    # def send_comment(self):
+    #     print('hello comment')
+    #     comments_line = self.env['product.dashboard'].search([('product_db_id', '=', self.id)])
+    #     # for i in comments_line:
+    #     print(comments_line.id, 'notes')
+    #     print(comments_line.curr_user, 'current user')
+    #     if comments_line.product_dashboard_notes_ids:
+    #         for lines in comments_line.product_dashboard_notes_ids:
+    #             vlas = {
+    #                 'current_user': lines.curr_user,
+    #                 'current_date': lines.curr_date,
+    #                 'des': lines.des,
+    #
+    #             }
+    #             notes = self.env['product.notes.line'].write(vlas)
+    #             print(notes)
 
         # for i in
 
@@ -323,3 +339,47 @@ class AlternativeProduct(models.Model):
     price_unit = fields.Float(string='Unit Price', default=1)
 
 
+class InheritSaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    # @api.onchange('product_id')
+    # def getpartfamily(self):
+    #     print('hello')
+    #
+    #     # print(product)
+    #     for i in self:
+    #         if i.product_id:
+    #             product = self.env['product.product'].search([("id", "=", self.product_id.id)])
+    #             print(product)
+    #             i.name = product.parts_family_id.name
+    #             print(self.name)
+    #
+    #         else:
+    #             self.name = ''
+
+    @api.onchange("product_id")
+    def product_id_change(self):
+        res = super(InheritSaleOrderLine, self).product_id_change()
+        for i in self:
+            if i.product_id:
+                product = self.env['product.product'].search([("id", "=", self.product_id.id)])
+                # print(product)
+                i.name = product.parts_family_id.name
+                # print(self.name)
+
+            else:
+                self.name = ''
+
+        return res
+
+
+
+
+
+class ProductNotes(models.Model):
+    _name = 'product.notes.line'
+
+    current_user = fields.Many2one('res.users', 'Current User', default=lambda self: self.env.user)
+    current_date = fields.Datetime(default=fields.datetime.now(), store=True, string="Date")
+    des = fields.Char(string="Description")
+    notes_id = fields.Many2one('product.product')
