@@ -66,6 +66,7 @@
             </field>
                                </group>
 <!--                                        <group>-->
+                                             <h1 style="text-align:center;margin:10px">Shop</h1>
                                              <field name="shop_ids"  readonly="1">
                                                  <tree>
                                                      <field name="branch"/>
