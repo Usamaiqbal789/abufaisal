@@ -65,7 +65,7 @@
 
             </field>
                                </group>
-                                        <group>
+<!--                                        <group>-->
                                              <field name="shop_ids"  readonly="1">
                                                  <tree>
                                                      <field name="branch"/>
@@ -80,10 +80,10 @@
                                              </field>
 
 
-
+                                     <h1 style="text-align:center;margin:10px">Warehouse</h1>
                                    <field name="reorder_quan_ids"  readonly="1"/>
 
-                                 </group>
+<!--                                 </group>-->
 
                                      <group>
                                          <group>

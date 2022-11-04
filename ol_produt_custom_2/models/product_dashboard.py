@@ -44,12 +44,12 @@ class CustomDashboard(models.TransientModel):
     eta = fields.Char(string="ETA")
     etd = fields.Char(string="ETD")
     oem = fields.Char(string="OEM Code", related='product_db_id.oem_code')
-    parts_fam = fields.Many2one(string="Parts Family", related='product_db_id.parts_family_id', readonly=True)
+    parts_fam = fields.Many2one(string="Parts Family", related='product_db_id.categ_id', readonly=True)
     # delivery_order_his = fields.Many2many('stock.picking', string="Delivery History")
     delivery_order_his = fields.Many2many('dashboard.delivery', string="Delivery History")
     substitute_product = fields.Many2many('product.product', string="Substitute Product")
     part_no = fields.Char(string="Part No", related='product_db_id.default_code')
-    part_name = fields.Char(string="Part Name")
+    part_name = fields.Char(string="Part Name",related='product_db_id.name')
     product_dashboard_notes_ids = fields.One2many('product.notes.dashboard.line', 'pro_dash')
     warehouse_ids = fields.Many2many('stock.quant')
     product_groups_ids = fields.Many2many('groups.product')
@@ -241,13 +241,18 @@ class CustomDashboard(models.TransientModel):
 
             # for p in pro:
 
-            rec = self.env['stock.quant'].search([("product_id", "=", self.product_db_id.id)])  # location page
+            rec = self.env['stock.warehouse'].search([])  # location page
+
+            for i in rec:
+                if i.ware_type:
+                    print(i.name)
+                    print(i.ware_type)
 
             # loc = None
             for o in rec:
                 # for w in p.warehouse_id:
                 shop_lines = self.env['dashboard.shop'].create({
-                    "branch": o.location_id.location_id.name,
+                    # "branch": o.location_id.location_id.name,
                     "cost": pro.standard_price,
                     "min_price": pro.min_unit_price,
                     "max_price": pro.lst_price,
@@ -312,6 +317,20 @@ class CustomDashboard(models.TransientModel):
         else:
             pass
 
+    @api.onchange('product_db_id')
+    def _get_part_no_only(self):
+        print("split")
+        if self.product_db_id:
+            a = self.product_db_id.default_code
+            # c= a)
+            print(a)
+            x = a.split(']')
+            b = x[0].split('[')
+
+            print(b,'product')
+        
+
+
 
 
 
@@ -347,6 +366,13 @@ class Dashboardshopcustom(models.Model):
     export_price = fields.Char(string="Export Price")
 
 
-# class WarehouseTable(models.Model):
-#     # _name = '.'
+class Dashboardcustomwarehouse(models.Model):
+    _name = 'dashboard.warehouse'
+
+    branch = fields.Char('Branch')
+    # cost = fields.Char('Cost')
+    # min_price = fields.Char(string="Min Price")
+    # max_price = fields.Char(string="Max price")
+    # trader = fields.Char(string="Trader")
+    # export_price = fields.Char(string="Export Price")
 

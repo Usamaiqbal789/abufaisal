@@ -31,6 +31,7 @@ class AccountmoveINherit(models.Model):
     attachment_ids = fields.Many2many('ir.attachment',
                                       string='Files')
     oem_code = fields.Char('OEM Code')
+
     product_make_type = fields.Selection([('genuine', 'Genuine'), ('replacement', 'Replacement'), ('commercial', 'Commerical')],
                                                string='Product Make Type',
                                                default='')
@@ -40,6 +41,7 @@ class AccountmoveINherit(models.Model):
     origin = fields.Many2one('res.country',string='Origin')
 
     part_num = fields.Char('Part Number')
+    part_name = fields.Char('Part Name')
     part_family = fields.Selection(
         [('engine', 'Engine'), ('body', 'Body'), ('electrical', 'Electrical'), ('cooling', 'Cooling'), ('transmission', 'Transmission')],
         string='Parts Family',
@@ -383,3 +385,9 @@ class ProductNotes(models.Model):
     current_date = fields.Datetime(default=fields.datetime.now(), store=True, string="Date")
     des = fields.Char(string="Description")
     notes_id = fields.Many2one('product.product')
+
+
+class Inheritstockwarehouse(models.Model):
+    _inherit = 'stock.warehouse'
+
+    ware_type = fields.Selection([('shop', 'Shop'), ('warehouse', 'Ware House')], 'Type')

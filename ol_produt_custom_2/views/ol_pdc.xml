@@ -488,8 +488,11 @@
 
          </xpath>
          <xpath expr="//field[@name='alternative_products']" position="after">
+
+
              <field name="product_make_type_id"/>
             <field name="parts_family_id"/>
+              <field name="part_name"/>
          </xpath>
          <xpath expr="//field[@name='uom_id']" position="before">
 
@@ -551,6 +554,21 @@
 
            </searchpanel>
         </xpath>
+
+    </field>
+</record>
+     <record model="ir.ui.view" id="view_inherit_stock_warehouse">
+    <field name="name">stock.warehouse.form</field>
+    <field name="model">stock.warehouse</field>
+    <field name="inherit_id" ref="stock.view_warehouse"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+         <xpath expr="//field[@name='code']" position="after">
+
+              <field name="ware_type" string="Type"/>
+
+
+                </xpath>
 
     </field>
 </record>
