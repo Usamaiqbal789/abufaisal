@@ -59,41 +59,57 @@
                                         <field name="db_origin"></field>
                                         <field name="product_brand" readonly="1"/>
                                         <field name="db_make_type" readonly="1"/>
-                                         <group>
-                                        <div>
-                                        <h2>User Logs</h2>
-                                        <field name="dashboard_logs_ids" nolabel="1">
-                                            <tree>
-                                                <button name="DEl_button" type="object" string="Delete" class="oe_highlight"/>
-                                                <field name="user_id"/>
+
+<!--                                    <group>-->
+
+<!--                                    </group>-->
+                                </group>
+                                </group>
+
+<!--                                 <group>-->
+
+<!--                                              <h2>Groups</h2>-->
+<!--                                        <field name="db_product_group" readonly="1" nolabel="1">-->
+<!--                                            <tree>-->
+<!--                                                <field name="grp_id" string="Groups"/>-->
+<!--                                                <field name="sub_grp_id" string="Sub Group"/>-->
+<!--                                                <field name="sub_sub_grp_id" string="Sub Sub Group"/>-->
+<!--                                            </tree>-->
+<!--                                        </field>-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+
+
+<!--                                     </group>-->
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3 style="color:##545254;text-align: center;">Groups</h3>
+                                            <br/>
+                                            <field name="db_product_group" readonly="1" nolabel="1">
+                                                <tree>
+
+                                                    <field name="grp_id" string="Groups"/>
+                                                <field name="sub_grp_id" string="Sub Group"/>
+                                                <field name="sub_sub_grp_id" string="Sub Sub Group"/>
+                                                </tree>
+                                            </field>
+                                        </div>
+                                         <div class="col-6">
+                                            <h3 style="color:##545254;text-align: center;">User Logs</h3>
+                                            <br/>
+                                            <field name="dashboard_logs_ids"  nolabel="1">
+                                                <tree>
+                                                    <button name="DEl_button" type="object" string="Delete" class="oe_highlight"/>
+                                                     <field name="user_id"/>
                                                 <field name="partner_id"/>
                                                 <field name="price"/>
                                                 <field name="description"/>
-                                            </tree>
-                                        </field>
-                                              <h2>Groups</h2>
-                                        <field name="db_product_group" readonly="1" nolabel="1">
-                                            <tree>
-                                                <field name="grp_id" string="Groups"/>
-                                                <field name="sub_grp_id" string="Sub Group"/>
-                                                <field name="sub_sub_grp_id" string="Sub Sub Group"/>
-                                            </tree>
-                                        </field>
+                                                </tree>
+                                            </field>
                                         </div>
-
-<!--                                        <field name="db_product_group" readonly="1">-->
-<!--                                            <tree>-->
-<!--                                                <field name='grp_id' string='Groups'/>-->
-<!--                                                <field name='sub_grp_id' string='Sub Group'/>-->
-<!--                                                <field name='sub_sub_grp_id' string='Sub Sub Group'/>-->
-<!--                                            </tree>-->
-<!--                                        </field>-->
-                                     </group>
-                                    <group>
-
-                                    </group>
-                                </group>
-                                </group>
+                                    </div>
+                                </div>
                                 <hr style="width:100%;text-align:left;margin-left:0"/>
                                 <h1 style="text-decoration: underline;color:#A75A5A;">INVENTORY</h1>
 
@@ -270,8 +286,8 @@
 
                                 <hr style="width:100%;text-align:left;margin-left:0"/>
                                 <!-- <h1 style="text-decoration: underline;color:#8DB2C6;">PURCHASE</h1> -->
-                                
-                                
+
+
                             </page>
                               <page string="Add Logs">
                                 <!-- <sheet> -->
@@ -301,7 +317,7 @@
                                 </group>
                             <div class="container">
                                     <div class="row">
-                                        
+
                                         <div class="col-12">
                                             <h3 style="color:##545254;text-align: center;">Purchase Orders</h3>
                                             <br/>
