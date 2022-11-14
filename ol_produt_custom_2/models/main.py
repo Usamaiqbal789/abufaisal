@@ -57,11 +57,7 @@ class AccountmoveINherit(models.Model):
     product_notes_ids = fields.One2many('product.notes.line','notes_id')
     trader = fields.Float('Trader')
     export_price = fields.Float('Export Price')
-
-
-
-
-
+    specification = fields.Char('Specification')
     @api.model
     def create(self, vals):
         # print(vals.get('name_seq'))
@@ -344,20 +340,7 @@ class AlternativeProduct(models.Model):
 class InheritSaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    # @api.onchange('product_id')
-    # def getpartfamily(self):
-    #     print('hello')
-    #
-    #     # print(product)
-    #     for i in self:
-    #         if i.product_id:
-    #             product = self.env['product.product'].search([("id", "=", self.product_id.id)])
-    #             print(product)
-    #             i.name = product.parts_family_id.name
-    #             print(self.name)
-    #
-    #         else:
-    #             self.name = ''
+    partner_id = fields.Many2one('res.partner',related="order_id.partner_id", string='Customer')
 
     @api.onchange("product_id")
     def product_id_change(self):
@@ -386,8 +369,29 @@ class ProductNotes(models.Model):
     des = fields.Char(string="Description")
     notes_id = fields.Many2one('product.product')
 
-
 class Inheritstockwarehouse(models.Model):
     _inherit = 'stock.warehouse'
 
-    ware_type = fields.Selection([('shop', 'Shop'), ('warehouse', 'Ware House')], 'Type')
+    ware_type = fields.Selection([('shop', 'Shop'), ('warehouse', 'Ware House')])
+
+class Inheritstocklocation(models.Model):
+    _inherit = 'stock.location'
+
+    type = fields.Char('Type')
+    cus_warehouse_id = fields.Many2one('stock.warehouse')
+    # type = fields.Selection([],related="cus_warehouse_id.ware_type")
+    type = fields.Char('Type')
+
+
+
+
+    @api.onchange('location_id')
+    def _get_type_from_stockwarehouse(self):
+        print('ware location')
+        self.cus_warehouse_id = self.location_id.id
+        print(self.cus_warehouse_id.id,'stock.warehouse')
+        # warehouse = self.env['stock.warehouse'].search([("name", "=", self.cus_warehouse_id.name)])
+        warehouse = self.env['stock.warehouse'].search([("id", "=", 1)])
+        print(warehouse.name,'warehouse type')
+
+    # type = fields.Selection('Type', related="cus_warehouse_id.ware_type")

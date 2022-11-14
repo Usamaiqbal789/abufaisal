@@ -6,189 +6,590 @@
             <field name="name">product.bashboard.view.form</field>
             <field name="model">product.dashboard</field>
             <field name="arch" type="xml">
-                  <form string="Group">
-                     <sheet>
-                         <group>
-
-                             <group>
-
-                      <field name="product_db_id"  options="{'no_create_edit': True, 'no_create': True}"/>
-
-
-                                 </group>
-                             <group>
-                                 <field name="product_image" widget="image" class="float-left" readonly="1"/>
 
 
 
-                             </group>
+                <form string="Group">
 
-                         </group>
-                         <notebook>
-                             <page string="Product Information" name="product information">
+                    <style>
+                        .zoom {
+<!--                        padding: 50px;-->
+<!--                        background-color: green;-->
+                        transition: transform .2s; /* Animation */
+                         width=100px;
+                         height=100px;
 
-                               <group>
+<!--                        width: 200px;-->
+<!--                        height: 200px;-->
+<!--                        margin: 0 auto;-->
+                        }
 
+                        .zoom:hover {
+                        transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+                        }
+                        </style>
+                    <sheet>
+                        <group>
 
-                                     <group style="width:350px">
+                            <group>
+                                <field name="product_db_id" options="{'no_create_edit': True, 'no_create': True}"/>
 
-<!--                                  <field name="part_no"/>-->
-                                  <field name="part_name" readonly="1"/>
-                                  <field name="own_ref_no" readonly="1"/>
-                                  <field name="spec" readonly="1"/>
+                            </group>
+                            <group >
+                                <field name="product_image" widget="image"  class="oe_avatar zoom"  readonly="1" nolabel="1" force_save="1"/>
+                            </group>
 
-                                  </group>
+                        </group>
+                        <notebook>
 
-                                   <group style="width:350px">
+                            <!--###########NEW DASHBOARD################-->
+                            <page string="Product Information">
 
-
-                                  <field name="product_brand" readonly="1"/>
-                                  <field name="parts_fam" readonly="1"/>
-                                   <field name="oem" readonly="1"/>
-                                       <field name="packet_detials" readonly="1"/>
-                                       <field name="eta" readonly="1"/>
-                                       <field name="etd" readonly="1"/>
-
-
-                                  </group>
-<!--                                       <field name ="curr_user_1"/>-->
-                                       <field name ="product_dashboard_notes_ids"
-                                          style="width:350px" >
-                                             <tree style="width:350px"  editable="bottom" delete="false">
-                                                <field name="curr_user" readonly="1"/>
-                                                <field name="curr_date" readonly="1"/>
-                                                <field name="des"/>
-
-                                            </tree>
-
-
-
-            </field>
-                               </group>
-<!--                                        <group>-->
-                                             <h1 style="text-align:center;margin:10px">Shop</h1>
-                                             <field name="shop_ids"  readonly="1">
-                                                 <tree>
-                                                     <field name="branch"/>
-                                                     <field name="cost"/>
-                                                     <field name="min_price"/>
-                                                     <field name="max_price"/>
-                                                     <field name="trader"/>
-                                                     <field name="export_price"/>
-
-
-                                                 </tree>
-                                             </field>
-
-
-                                     <h1 style="text-align:center;margin:10px">Warehouse</h1>
-                                   <field name="reorder_quan_ids"  readonly="1"/>
-
-<!--                                 </group>-->
-
-                                     <group>
-                                         <group>
-
-                                     <field name="product_groups_ids" readonly="1">
-                                         <tree>
-                                              <field name="grp_id"/>
-                                              <field name="sub_grp_id"/>
-                                              <field name="sub_sub_grp_id"/>
-
-
-                                         </tree>
-
-
-
-                                     </field>
-                                             </group>
-
-                                       <group>
-                                          <field name="substitute_product"  readonly="1">
-                                                  <tree>
-                                                      <field name="default_code" string="Part Number"/>
-                                                      <field name="name"/>
-                                                      <field name="qty_available"/>
-                                                      <field name="lst_price" string="Max Price"/>
-
-
-
-                                                  </tree>
-                                          </field>
-                                           </group>
-                                     </group>
-
-
-
-
-
+                                <h1 style="text-decoration: underline;color:#248F92">GENERAL INFORMATION</h1>
+                                <group>
                                     <group>
-                                        <group>
+                                        <field name="part_no"/>
+                                        <field name="part_name" readonly="1"/>
+                                        <field name="own_ref_no" readonly="1"/>
+                                        <field name="spec" readonly="1"/>
+                                        <field name="product_description" readonly="1"></field>
+                                    </group>
+                                    <group>
+                                        <field name="db_detailed_type" readonly="1"/>
+                                        <field name="db_origin"></field>
+                                        <field name="product_brand" readonly="1"/>
+                                        <field name="db_make_type" readonly="1"/>
+                                         <group>
+                                        <div>
+                                        <h2>User Logs</h2>
+                                        <field name="dashboard_logs_ids" nolabel="1">
+                                            <tree>
+                                                <button name="DEl_button" type="object" string="Delete" class="oe_highlight"/>
+                                                <field name="user_id"/>
+                                                <field name="partner_id"/>
+                                                <field name="price"/>
+                                                <field name="description"/>
+                                            </tree>
+                                        </field>
+                                              <h2>Groups</h2>
+                                        <field name="db_product_group" readonly="1" nolabel="1">
+                                            <tree>
+                                                <field name="grp_id" string="Groups"/>
+                                                <field name="sub_grp_id" string="Sub Group"/>
+                                                <field name="sub_sub_grp_id" string="Sub Sub Group"/>
+                                            </tree>
+                                        </field>
+                                        </div>
+
+<!--                                        <field name="db_product_group" readonly="1">-->
+<!--                                            <tree>-->
+<!--                                                <field name='grp_id' string='Groups'/>-->
+<!--                                                <field name='sub_grp_id' string='Sub Group'/>-->
+<!--                                                <field name='sub_sub_grp_id' string='Sub Sub Group'/>-->
+<!--                                            </tree>-->
+<!--                                        </field>-->
+                                     </group>
+                                    <group>
+
+                                    </group>
+                                </group>
+                                </group>
+                                <hr style="width:100%;text-align:left;margin-left:0"/>
+                                <h1 style="text-decoration: underline;color:#A75A5A;">INVENTORY</h1>
+
+                                <group>
+                                    <group>
+                                        <field name="sale_uom" readonly="1"/>
+                                    </group>
+                                    <group>
+
+                                        <field name="purchase_uom" readonly="1"/>
+                                    </group>
+                                </group>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3 style="color:##545254;text-align: center;">Product Packaging</h3>
+                                            <br/>
+                                            <field name="db_packaging" readonly="1" nolabel="1">
+                                                <tree>
+                                                    <field name="name" string="Name" width="20"/>
+                                                    <field name="qty" string="Units"/>
+                                                    <field name="product_uom_id" string="UOM"/>
+                                                </tree>
+                                            </field>
+                                        </div>
+                                        <div class="col-6">
+                                            <h3 style="color:##545254;text-align: center;">Subtitute Products</h3>
+                                            <br/>
+                                            <field name="alternatives" readonly="1" nolabel="1">
+                                                <tree>
+                                                    <field name="default_code" string="Code"/>
+                                                    <field name="name" string="Name"/>
+                                                    <field name="lst_price" string="Price"/>
+                                                    <field name="qty_available" string="On Hand"/>
+                                                </tree>
+                                            </field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style="color:##545254;text-align: center;">Shop</h3>
+                                <br/>
+                                <field name="db_shop_ids" nolabel="1" domain="[('warehouse_shop', '=', 'shop')]" readonly="1">
+                                    <tree>
+                                        <field name="branch"/>
+                                        <field name="qty_inhand"/>
+                                        <field name="loc_ids" widget="many2many_tags"/>
+                                        <field name="cost"/>
+                                        <field name="min_price"/>
+                                        <field name="max_price"/>
+                                        <field name="export_price"/>
+                                        <field name="trader"/>
+                                    </tree>
+                                </field>
+                                <h3 style="color:##545254;text-align: center;">Ware House</h3>
+                                <br/>
+                                <field name="db_warehouse_ids" nolabel="1" domain="[('warehouse_shop', '=', 'warehouse')]" readonly="1">
+                                    <tree>
+                                        <field name="branch"/>
+                                        <field name="qty_inhand"/>
+                                        <field name="loc_ids" widget="many2many_tags"/>
+                                        <field name="reorder_qty"/>
+                                        <field name="reorder_level"/>
+                                    </tree>
+                                </field>
+                                <hr style="width:100%;text-align:left;margin-left:0"/>
+                                <h1 style="text-decoration: underline;color:#D48658;">SALES</h1>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h3 style="color:##545254;text-align: center;">Quotations</h3>
+                                            <br/>
+                                            <field name="quotation_his_id"  readonly="1">
+                                                <tree>
+                                                    <field name="order_id"></field>
+                                                    <field name="create_date"></field>
+                                                    <field name="partner_id"></field>
+                                                    <field name="product_uom_qty"></field>
+<!--                                                    <field name="qty_delivered"></field>-->
+                                                    <field name="qty_invoiced"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal"></field>
+                                                </tree>
+                                            </field>
+                                        </div>
+                                        <div class="col-12">
+                                            <h3 style="color:##545254;text-align: center;">Delivery Orders</h3>
+                                            <br/>
+                                            <field name="customer_order_ids" readonly="1">
+                                                <tree>
+                                                    <field name="order_id"></field>
+                                                    <field name="create_date"></field>
+                                                    <field name="partner_id"></field>
+                                                    <field name="product_uom_qty"></field>
+                                                    <field name="qty_delivered"></field>
+                                                    <field name="qty_invoiced"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal"></field>
+                                                </tree>
+                                            </field>
+                                        </div>
+                                    </div>
+
+                                    <hr style="width:100%;text-align:left;margin-left:0"/>
+                                <h1 style="text-decoration: underline;color:#D48658;">POS</h1>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h3 style="color:##545254;text-align: center;">Point Of Sale</h3>
+                                            <br/>
+                                            <field name="pos_db_ids"  readonly="1">
+                                                <tree>
+                                                    <field  style="max-width:5px" name="order_id"></field>
+                                                    <field name="create_date"></field>
+<!--                                                    <field name="display_name"></field>-->
+<!--                                                    <field name="partner_id"></field>-->
+                                                    <field name="qty"></field>
+                                                    <field name="discount"></field>
 
 
-                                      <field name="delivery_order_his" style="width:290px"  readonly="1">
-                                          <tree>
-                                         <field name="ref"/>
-                                         <field name="customer"/>
-                                         <field name="shud_date"/>
-                                         <field name="demand"/>
-                                         <field name="done"/>
-<!--                                         <field name="scheduled_date"/>-->
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal_incl"></field>
 
-<!--                                         <field name="partner_id"/>-->
+                                                </tree>
+                                            </field>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                     <hr style="width:100%;text-align:left;margin-left:0"/>
+                                <h1 style="text-decoration: underline;color:#D48658;">INVOICES</h1>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h3 style="color:##545254;text-align: center;">Invoice</h3>
+                                            <br/>
+                                            <field name="invoice_db_ids"  readonly="1">
+                                                <tree>
+                                                    <field name="move_id"></field>
+<!--                                                    <field name="ref"></field>-->
+                                                    <field name="date"></field>
+                                                    <field name="partner_id"></field>
 
-                                          </tree>
-                                         </field>
-                                            </group>
+                                                    <field name="quantity"></field>
+<!--                                                    <field name="qty_delivered"></field>-->
+                                                    <field name="product_uom_id"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal" sum="Total Of Price Subtotal"></field>
+                                                    <field name="parent_state"></field>
+                                                </tree>
+                                            </field>
 
+                                             <h3 style="color:##545254;text-align: center;">Pos Invoice</h3>
+                                            <br/>
+                                            <field name="posinvoice_db_ids"  readonly="1">
+                                                <tree>
+                                                    <field name="move_id"></field>
+<!--                                                    <field name="ref"></field>-->
+                                                    <field name="date"></field>
+                                                    <field name="partner_id"></field>
 
-                                          <group>
-                                     <field name="sale_his_id"  readonly="1">
-                                         <tree>
+                                                    <field name="quantity"></field>
+<!--                                                    <field name="qty_delivered"></field>-->
+                                                    <field name="product_uom_id"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal" sum="Total Of Price Subtotal"></field>
+                                                    <field name="parent_state"></field>
+                                                </tree>
+                                            </field>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                             <field style="width:8px" name="order_partner_id"/>
-                                             <field name="product_uom_qty"/>
-                                             <field name="price_subtotal"/>
+                                </div>
 
-
-
-                                         </tree>
-                                     </field>
-                                              </group>
-                                        </group>
-                                   <group>
-
-
-
-                                       <group>
-
-                                      <field name="quotation_his_id"  readonly="1">
-
-
-                                      </field>
-
-
-
-                                       </group>
-                                       <group>
-
-                                   <field name="customer_order_ids"  readonly="1"/>
-
-
-
-                                   </group>
+                                <hr style="width:100%;text-align:left;margin-left:0"/>
+                                <!-- <h1 style="text-decoration: underline;color:#8DB2C6;">PURCHASE</h1> -->
+                                
+                                
+                            </page>
+                              <page string="Add Logs">
+                                <!-- <sheet> -->
+                                <group>
+                                    <group>
+                                        <field name="logs_description"/>
+                                        <field name="logs_price"/>
+                                    </group>
+                                    <group>
+                                        <field name="logs_partner_id"/>
+                                        <button name="addlogs" type="object" class="btn-primary" string="Add Logs"/>
+                                    </group>
 
 
                                 </group>
+                              </page>
+                            <page string="Purchase Information">
+                            <group>
+                                    <group>
+                                        <field name="last_supplier" readonly="1"></field>
+                                        <field name="supplier_reference" readonly="1"></field>
+                                    </group>
+                                    <group style="width:350px">
+                                        <field name="last_purchase_cost" readonly="1"></field>
+                                        <field name="avg_purchase_cost" readonly="1"></field>
+                                    </group>
+                                </group>
+                            <div class="container">
+                                    <div class="row">
+                                        
+                                        <div class="col-12">
+                                            <h3 style="color:##545254;text-align: center;">Purchase Orders</h3>
+                                            <br/>
+                                            <field name="purchase" readonly="1">
+                                                <tree>
+                                                    <field name="order_id"></field>
+                                                    <field name="create_date"></field>
+                                                    <field name="partner_id"></field>
+                                                    <field name="product_uom_qty"></field>
+                                                    <field name="qty_received"></field>
+                                                    <field name="qty_invoiced"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal"></field>
+                                                </tree>
+                                            </field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </page>
+                            <page string="Inventory Movement">
+<!--                                <group>-->
+                                     <div class="container">
+<!--                                    <div class="row">-->
+                                        <div class="col-6">
+                                    <group>
+                                        <div>
+                                            <h6>From</h6>
+                                <field  style="width:150px" name="from_date"></field>
+                                            </div>
+<!--                                    </group>-->
+<!--                                    <group  style="width:350px">-->
+                                    <div style="right-margin:0px">
+                                    <h6>To</h6>
+                                <field  style="width:150px;" name="to_date"></field>
+
+
+                                        </div>
+                                        <div>
+
+                                              <field  style="width:150px;" name="state" widget="many2many_checkboxes"></field>
+                                        </div>
+
+
+
+                                        </group>
+                                        </div>
+                                    </div>
+<!--                                     </div>-->
+
 <!--                                </group>-->
+                                <notebook>
+                                <page string="Purchase">
+                                    <h3 style="color:##545254;text-align: center;">Purchase</h3>
+
+                                       <field   name="purchase_two">
+                                           <tree>
+                                                <field name="order_id"></field>
+                                                    <field name="create_date"></field>
+                                                    <field name="partner_id"></field>
+                                                    <field name="product_uom_qty"></field>
+                                                    <field name="qty_received"></field>
+                                                    <field name="qty_invoiced"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal"></field>
 
 
-                             </page>
+
+                                           </tree>
 
 
 
-                         </notebook>
+
+                                       </field>
+
+                                </page>
+
+                                    <page string="Local Purchase Order">
+                                    <h3 style="color:##545254;text-align: center;">Lpo</h3>
+
+                                       <field   name="lpo_order_ids">
+                                           <tree>
+                                                 <field name="order_id"></field>
+                                                    <field name="create_date"></field>
+                                                    <field name="partner_id"></field>
+                                                    <field name="product_uom_qty"></field>
+<!--                                                    <field name="qty_delivered"></field>-->
+                                                    <field name="qty_invoiced"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal"></field>
+
+
+
+                                           </tree>
+
+
+
+
+                                       </field>
+
+                                </page>
+
+
+                                    <page string="Quotation">
+                                    <h3 style="color:##545254;text-align: center;">Quotation</h3>
+
+                                       <field   name="quotation_two">
+                                           <tree>
+                                                  <field name="order_id"></field>
+                                                    <field name="create_date"></field>
+                                                    <field name="partner_id"></field>
+                                                    <field name="product_uom_qty"></field>
+                                                    <field name="qty_delivered"></field>
+                                                    <field name="qty_invoiced"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal"></field>
+
+
+
+                                           </tree>
+
+
+
+
+                                       </field>
+
+                                </page>
+
+
+                                    <page string="Sale">
+                                    <h3 style="color:##545254;text-align: center;">Sale</h3>
+
+                                       <field   name="customer_order_two">
+                                           <tree>
+                                                  <field name="order_id"></field>
+                                                    <field name="create_date"></field>
+                                                    <field name="partner_id"></field>
+                                                    <field name="product_uom_qty"></field>
+                                                    <field name="qty_delivered"></field>
+                                                    <field name="qty_invoiced"></field>
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal"></field>
+
+
+
+                                           </tree>
+
+
+
+
+                                       </field>
+
+                                         <h3 style="color:##545254;text-align: center;">Point Of Sale</h3>
+                                            <br/>
+                                            <field name="pos_order_two"  readonly="1">
+                                                <tree>
+                                                    <field  style="max-width:5px" name="order_id"></field>
+                                                    <field name="create_date"></field>
+<!--                                                    <field name="display_name"></field>-->
+<!--                                                    <field name="partner_id"></field>-->
+                                                    <field name="qty"></field>
+                                                    <field name="discount"></field>
+
+
+                                                    <field name="price_unit"></field>
+                                                    <field name="price_subtotal_incl"></field>
+
+                                                </tree>
+                                            </field>
+
+                                </page>
+
+
+                                     <page string="Internal Tranfer">
+                                    <h3 style="color:##545254;text-align: center;">Internal Transfer</h3>
+
+                                       <field   name="internal_tranfer">
+                                           <tree>
+                                                  <field name="date"></field>
+                                                    <field name="reference"></field>
+                                               <field name="lot_id"></field>
+                                               <field name="owner_id"></field>
+                                               <field name="location_id"></field>
+                                               <field name="location_dest_id"></field>
+                                               <field name="qty_done"></field>
+                                               <field name="product_uom_id"></field>
+                                                    <field name="origin"></field>
+                                                    <field name="state"></field>
+
+
+
+                                           </tree>
+
+
+
+
+                                       </field>
+
+
+
+
+                                </page>
+
+
+                                     <page string="Received">
+                                    <h3 style="color:##545254;text-align: center;">Received</h3>
+
+                                       <field   name="received_id">
+                                           <tree>
+                                                   <field name="date"></field>
+                                                    <field name="reference"></field>
+                                               <field name="lot_id"></field>
+                                               <field name="owner_id"></field>
+                                               <field name="location_id"></field>
+                                               <field name="location_dest_id"></field>
+                                               <field name="qty_done"></field>
+                                               <field name="product_uom_id"></field>
+                                                    <field name="origin"></field>
+                                                    <field name="state"></field>
+
+
+                                           </tree>
+
+
+
+
+                                       </field>
+
+                                </page>
+
+
+                                     <page string="Devilery">
+                                    <h3 style="color:##545254;text-align: center;">Delivery</h3>
+
+                                       <field   name="delivery_order_id">
+                                           <tree>
+                                                    <field name="date"></field>
+                                                    <field name="reference"></field>
+                                               <field name="lot_id"></field>
+                                               <field name="owner_id"></field>
+                                               <field name="location_id"></field>
+                                               <field name="location_dest_id"></field>
+                                               <field name="qty_done"></field>
+                                               <field name="product_uom_id"></field>
+                                                    <field name="origin"></field>
+                                                    <field name="state"></field>
+
+
+
+                                           </tree>
+
+
+
+
+                                       </field>
+
+                                         <h3 style="color:##545254;text-align: center;">Pos Delivery</h3>
+
+                                       <field   name="pos_delivery">
+                                           <tree>
+                                                  <field name="date"></field>
+                                                    <field name="reference"></field>
+
+
+                                               <field name="location_id"></field>
+                                               <field name="location_dest_id"></field>
+                                               <field name="quantity_done"></field>
+<!--                                               <field name="product_uom_id"></field>-->
+                                                    <field name="origin"></field>
+                                                    <field name="state"></field>
+
+
+
+                                           </tree>
+
+
+
+
+                                       </field>
+
+                                </page>
+                                </notebook>
+
+
+
+
+                            </page>
+
+                        </notebook>
 
 
                     </sheet>
@@ -200,13 +601,16 @@
 
 
 
-         <record model="ir.actions.act_window" id="action_custom_dashboard">
+
+
+
+        <record model="ir.actions.act_window" id="action_custom_dashboard">
             <field name="name">Dash Board</field>
             <field name="res_model">product.dashboard</field>
             <field name="view_mode">form</field>
         </record>
 
 
-         <menuitem id="custom_dashboard_menuitem"  name="Dashboard"  action="action_custom_dashboard"  parent="stock.menu_stock_root"  sequence="101"/>
+        <menuitem id="custom_dashboard_menuitem" name="Dashboard" action="action_custom_dashboard" parent="stock.menu_stock_root" sequence="101"/>
     </data>
 </odoo>
