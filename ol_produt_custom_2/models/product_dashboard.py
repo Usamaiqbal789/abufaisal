@@ -102,6 +102,8 @@ class CustomDashboard(models.TransientModel):
     logs_partner_id = fields.Many2one('res.partner', string='Customer')
     dashboard_logs_ids = fields.Many2many('dasboard.logs', string='Dashboard Logs')
 
+
+
     # @api.onchange('dashboard_logs_ids')
     # def remove_logs(self):
     #
