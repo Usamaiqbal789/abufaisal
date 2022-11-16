@@ -98,7 +98,7 @@
                                          <div class="col-6">
                                             <h3 style="color:##545254;text-align: center;">User Logs</h3>
                                             <br/>
-                                            <field name="dashboard_logs_ids"  nolabel="1">
+                                            <field name="dashboard_logs_ids" readonly="1" nolabel="1">
                                                 <tree>
                                                     <button name="DEl_button" type="object" string="Delete" class="oe_highlight"/>
                                                      <field name="user_id"/>
