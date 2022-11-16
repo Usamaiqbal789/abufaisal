@@ -155,11 +155,11 @@ class InheritProductDashboard(models.TransientModel):
             for a in self.state:
                 # warehouseids = int(str(a.id)[6:])
                 warehouseids = a._origin.id
-                print(warehouseids)
+                # print(warehouseids)
 
                 all_warehousetransfer.append(warehouseids)
 
-            print(all_warehousetransfer, 'warehouse ids list transfer')
+            # print(all_warehousetransfer, 'warehouse ids list transfer')
         stock_move = self.env['stock.move.line'].search(
             [("product_id", "=", self.product_db_id.id),
              ('picking_id.picking_type_id.warehouse_id.id', 'in', all_warehousetransfer), '&',
@@ -196,14 +196,14 @@ class InheritProductDashboard(models.TransientModel):
     def _get_posorder_history(self):
         pos_orderline = self.env['pos.order.line'].search(
             [("product_id", "=", self.product_db_id.id)])
-        print(pos_orderline.product_id.name, 'pos product')
+        # print(pos_orderline.product_id.name, 'pos product')
 
-        print(pos_orderline.order_id.picking_ids, 'pos delivery ')
+        # print(pos_orderline.order_id.picking_ids, 'pos delivery ')
         pos_list = []
         for pos in pos_orderline:
             if pos.order_id.state == 'done':
                 pos_list.append(pos.id)
-                print(pos_list, 'pos list')
+                # print(pos_list, 'pos list')
 
         self.pos_db_ids = [(6, 0, pos_list)]
 
@@ -261,7 +261,7 @@ class InheritProductDashboard(models.TransientModel):
         for pos in pos_ordertwo:
             if pos.order_id.state == 'done':
                 pos_two.append(pos.id)
-                print(pos_two, 'pos list')
+                # print(pos_two, 'pos list')
 
         self.pos_order_two = [(6, 0, pos_two)]
 
@@ -286,7 +286,7 @@ class InheritProductDashboard(models.TransientModel):
 
         account_moveline = self.env['account.move.line'].search(
             [("product_id", "=", self.product_db_id.id)])
-        print(account_moveline.product_id.name)
+        # print(account_moveline.product_id.name)
         # for l in  account_moveline.move_id :
         #     # print(l.move_type)
 

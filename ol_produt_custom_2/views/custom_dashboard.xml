@@ -291,18 +291,38 @@
                             </page>
                               <page string="Add Logs">
                                 <!-- <sheet> -->
-                                <group>
-                                    <group>
-                                        <field name="logs_description"/>
-                                        <field name="logs_price"/>
-                                    </group>
-                                    <group>
-                                        <field name="logs_partner_id"/>
-                                        <button name="addlogs" type="object" class="btn-primary" string="Add Logs"/>
-                                    </group>
+
+                                  <field name="add_log_id">
+                                      <tree>
+                                          <field name="add_description"/>
+                                          <field name="add_price"/>
+                                          <field name="add_partner_id"/>
 
 
-                                </group>
+
+
+
+                                      </tree>
+
+
+
+                                  </field>
+<!--                                <group>-->
+<!--                                    <group>-->
+<!--                                        <field name="logs_description"/>-->
+<!--                                        <field name="logs_price"/>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+<!--                                        <field name="logs_partner_id"/>-->
+<!--                                        <button name="addlogs" type="object" class="btn-primary" string="Add Logs"/>-->
+<!--                                    </group>-->
+
+
+<!--                                </group>-->
+                                   <footer>
+                                       <button name="addlogs" type="object" class="btn-primary" string="Add Logs"/>
+
+                                      </footer>
                               </page>
                             <page string="Purchase Information">
                             <group>

@@ -102,6 +102,8 @@ class CustomDashboard(models.TransientModel):
     logs_partner_id = fields.Many2one('res.partner', string='Customer')
     dashboard_logs_ids = fields.Many2many('dasboard.logs', string='Dashboard Logs')
 
+    add_log_id = fields.Many2many(comodel_name='add.log')
+
 
 
     # @api.onchange('dashboard_logs_ids')
@@ -244,20 +246,55 @@ class CustomDashboard(models.TransientModel):
             self.avg_purchase_cost=cost_sum/len(po.ids)
 
     def addlogs(self):
-        if self.logs_description or self.logs_partner_id or self.logs_price:
-            self.env['dasboard.logs'].create({
-                'product_id': self.product_db_id.id,
-                'description': self.logs_description,
-                'user_id': self.env.user.id,
-                'price': self.logs_price,
-                'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
+        # pass
+        lg = []
+        if self.add_log_id:
+            for ad in self.add_log_id:
+                    an = self.env['dasboard.logs'].create({
+                                'product_id': self.product_db_id.id,
+                                'description': ad.add_description,
+                                'user_id': self.env.user.id,
+                                'price': ad.add_price,
+                                'partner_id': ad.add_partner_id.id if ad.add_partner_id else False
+                            })
+                    for o in an:
+                        lg.append(o.id)
+                        print(lg,'list logs')
+
+            # self.dashboard_logs_ids = lg
+            #
+            # self.dashboard_logs_ids = [(6, 0, lg)]
+
+            self.write({
+                "dashboard_logs_ids":  [(6, 0, lg)]
             })
+
+
+    #     lg=[]
+    #     if self.logs_description or self.logs_partner_id or self.logs_price:
+    #         an=self.env['dasboard.logs'].create({
+    #             'product_id': self.product_db_id.id,
+    #             'description': self.logs_description,
+    #             'user_id': self.env.user.id,
+    #             'price': self.logs_price,
+    #             'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
+    #         })
+    #     for o in an:
+    #         lg.append(o.id)
+    #         print(lg,'list logs')
         # self._campus_onchange()
+        # self.dashboard_logs_ids = lg
+
+        # self.dashboard_logs_ids = [(6, 0, lg)]
+
+        # self.write({
+        #     "dashboard_logs_ids":  [(6, 0, lg)]
+        # })
 
 class DashboardLogs(models.Model):
     _name = 'dasboard.logs'
 
-    product_id = fields.Many2one('product.product', string='Prouduct', readonly=True)
+    product_id = fields.Many2one('product.product', string='Product', readonly=True)
     user_id = fields.Many2one('res.users', string='User', readonly=True)
     partner_id = fields.Many2one('res.partner', string='Customer')
     price = fields.Float('Price')
@@ -267,5 +304,28 @@ class DashboardLogs(models.Model):
 
         if self:
            self.unlink()
+
+
+class ADDlog(models.Model):
+    _name = 'add.log'
+
+    add_description = fields.Char('Description')
+    add_price = fields.Char('Price')
+    add_partner_id = fields.Many2one('res.partner', string='Customer')
+
+    # def addlogs(self):
+    #     pass
+        # lg = []
+        # if self.logs_description or self.logs_partner_id or self.logs_price:
+        #     an = self.env['dasboard.logs'].create({
+        #         'product_id': self.product_db_id.id,
+        #         'description': self.logs_description,
+        #         'user_id': self.env.user.id,
+        #         'price': self.logs_price,
+        #         'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
+        #     })
+        # for o in an:
+        #     lg.append(o.id)
+        #     print(lg, 'list logs')
 
 
