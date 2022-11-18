@@ -424,15 +424,7 @@
                     <field name="specification"></field>
                     <field name="alternate_product_warning_show" readonly="1" invisible="1"/>
                     <field name="alternate_product_warning" readonly="1" attrs="{'invisible': [('alternate_product_warning_show','=', False)]}"/>
-                      <h5 style="color:##545254;text-align: center;">Alternative Product Table</h5>
-                   
-                    <field name="alternative_products" nolabel="1">
-                        <tree editable="bottom" order="name">
-                            <field name="default_code" string="Part NO"/>
-                            <field name="name"/>
-                            <field name="lst_price"/>
-                        </tree>
-                    </field>
+
                      <h5 style="color:##545254;text-align: center;">Group Table</h5>
                     <field name='group_product_ids' string="Group Products" colspan="4" widget="one2many_list" nolabel="1">
                         <tree editable='bottom'>
@@ -440,6 +432,16 @@
                             <field name='sub_grp_id' string='Sub Group'/>
                             <field name='sub_sub_grp_id' string='Sub Sub Group'/>
 
+                        </tree>
+                    </field>
+
+                     <h5 style="color:##545254;text-align: center;">Alternative Product Table</h5>
+
+                    <field name="alternative_products" nolabel="1">
+                        <tree editable="bottom" order="name">
+                            <field name="default_code" string="Part NO"/>
+                            <field name="name"/>
+                            <field name="lst_price"/>
                         </tree>
                     </field>
 
