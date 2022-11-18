@@ -426,7 +426,7 @@
                     <field name="alternate_product_warning" readonly="1" attrs="{'invisible': [('alternate_product_warning_show','=', False)]}"/>
                       <h5 style="color:##545254;text-align: center;">Alternative Product Table</h5>
                     <br/>
-                    <field name="alternative_products" nolabel="1">
+                    <field name="alternative_products" nolabel="1" max-width="auto">
                         <tree editable="bottom" order="name">
                             <field name="default_code" string="Part NO"/>
                             <field name="name"/>
@@ -455,8 +455,10 @@
 
                     <field name="own_ref_no"/>
                     <field name="origin"/>
+                    <field name="origin"/>
 
                     <h5 style="color:##545254;text-align: center;padding-top:10Fpx;">Price Table</h5>
+                      <br/>
                     <field name='pricelist_ids' colspan="4" widget="one2many_list" nolabel="1">
                         <tree editable='bottom'>
                             <field name='fixed_price'/>
@@ -471,12 +473,7 @@
 
 
                 </xpath>
-                <xpath expr="//field[@name='alternative_products']" position="after">
 
-
-                    <field name="product_make_type_id"/>
-
-                </xpath>
 
 
             </field>
