@@ -426,7 +426,7 @@
                     <field name="alternate_product_warning" readonly="1" attrs="{'invisible': [('alternate_product_warning_show','=', False)]}"/>
                       <h5 style="color:##545254;text-align: center;">Alternative Product Table</h5>
                     <br/>
-                    <field name="alternative_products" nolabel="1" max-width="auto">
+                    <field name="alternative_products" nolabel="1">
                         <tree editable="bottom" order="name">
                             <field name="default_code" string="Part NO"/>
                             <field name="name"/>
