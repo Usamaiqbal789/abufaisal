@@ -435,7 +435,7 @@
                     </field>
                      <h5 style="color:##545254;text-align: center;">Group Table</h5>
                     <br/>
-                    <field name='group_product_ids' string="Group Products" colspan="4" widget="one2many_list">
+                    <field name='group_product_ids' string="Group Products" colspan="4" widget="one2many_list" nolabel="1">
                         <tree editable='bottom'>
                             <field name='grp_id' string='Groups'/>
                             <field name='sub_grp_id' string='Sub Group'/>
