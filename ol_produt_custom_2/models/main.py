@@ -160,6 +160,9 @@ class AccountmoveINherit(models.Model):
             #                                                    limit=1)
             #     print(last_item)
             #     self.own_ref_no = last_item.own_ref_no + 1
+    pricelist_ids= fields.One2many('product.pricelist.item','product_id',string="Price List")
+
+
     alternate_product_warning=fields.Char("Warning")
     alternate_product_warning_show=fields.Char("Warning_show",default=False)
     @api.onchange('alternative_products','alternative_products.default_code')

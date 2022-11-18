@@ -14,6 +14,7 @@ class Inheritproductpricelistitem(models.Model):
     trade_price = fields.Float('Trader')
     export_price = fields.Float(string="Export Price")
 
+
 class Inheritproductpricelist(models.Model):
     _inherit = 'product.pricelist'
 
@@ -102,24 +103,11 @@ class CustomDashboard(models.TransientModel):
     logs_partner_id = fields.Many2one('res.partner', string='Customer')
     dashboard_logs_ids = fields.Many2many('dasboard.logs', string='Dashboard Logs')
 
+    @api.depends('product_db_id')
+    def add_log_ids_dash(self):
+        logs=self.env['dasboard.logs'].search([('product_id','=',self.product_db_id.id)])
+        self.dashboard_logs_ids=logs
     add_log_id = fields.Many2many(comodel_name='add.log')
-
-
-
-    # @api.onchange('dashboard_logs_ids')
-    # def remove_logs(self):
-    #
-    #     if self.dashboard_logs_ids:
-    #         remove_ids=self.dashboard_logs_ids-self.env['dasboard.logs'].search([('product_id','=',self.product_db_id.id)])
-    #         # raise UserError(remove_ids)
-    #         lis=[]
-    #         for da in remove_ids:
-    #             lis.append(da._origin.id)
-    #
-    #         print(lis,'deleted rec')
-            # for ri in lis:
-            #     ri.unlink()
-
 
 
     @api.onchange('product_db_id')
@@ -146,12 +134,12 @@ class CustomDashboard(models.TransientModel):
             price_list = self.env['product.pricelist'].search([('warehouse_id', '=', w.id)])
             price_list_item = self.env['product.pricelist.item'].search([('pricelist_id','=',price_list.id),('product_id', '=', self.product_db_id.id)])
             cost = self.env['product.product'].search([('id', '=', self.product_db_id.id)])
-            
+
             reorder_qty="Not Maintanied"
             reorder_level="Not Maintanied"
             for l in locations:
                 inventory=self.env['stock.quant'].search([('location_id','=',l.id)])
-                
+
                 re_order=self.env['stock.warehouse.orderpoint'].search([('location_id','=',l.id),('product_id','=',self.product_db_id.id)])
                 for ro in re_order:
                     if ro:
@@ -188,7 +176,7 @@ class CustomDashboard(models.TransientModel):
         self.db_warehouse_ids=enter_data_warehouse
         self.db_shop_ids=enter_data_shop
 
-    
+
     quotation_his_id = fields.Many2many(comodel_name='sale.order.line',
                                         relation='contents_found',
                                         column1='lot_id',
@@ -213,17 +201,46 @@ class CustomDashboard(models.TransientModel):
                 so_ids.append(line.id)
         self.quotation_his_id = sa_ids
         self.customer_order_ids = so_ids
-                
+
     purchase = fields.Many2many(comodel_name='purchase.order.line',compute="purchase_lines")
+    local_puchase = fields.Many2many(comodel_name='purchase.order.line',relation='contents_found',
+                                          column1='lot_id',
+                                          column2='content_id',
+                                            compute="purchase_lines")
+
+    rfq_puchase = fields.Many2many(comodel_name='purchase.order.line', relation='contents_found',
+                                     column1='lot_id',
+                                     column2='content_id',
+                                     compute="purchase_lines")
+
+    rfq_local_puchase = fields.Many2many(comodel_name='purchase.order.line', relation='contents_found',
+                                   column1='lot_id',
+                                   column2='content_id',
+                                   compute="purchase_lines")
     # quotation history
     @api.onchange('product_db_id')
     def purchase_lines(self):
         purchase_line_q = self.env['purchase.order.line'].search([("product_id", "=", self.product_db_id.id)])
         po_ids = []
+        lpo_ids =[]
+        lporfo =[]
+        porfo =[]
         for line in purchase_line_q:
             if line.order_id.state == 'purchase' or line.order_id.state == 'done':
-                po_ids.append(line.id)
+                if line.order_id.order_type == 'purchase_order':
+                    po_ids.append(line.id)
+                elif line.order_id.order_type == 'lpo':
+                    lpo_ids.append(line.id)
+            if line.order_id.state == 'draft':
+                if line.order_id.order_type == 'purchase_order':
+                    porfo.append(line.id)
+                elif line.order_id.order_type == 'lpo':
+                    lporfo.append(line.id)
+
         self.purchase = po_ids
+        self.local_puchase = lpo_ids
+        self.rfq_puchase = porfo
+        self.rfq_local_puchase = lporfo
 
     supplier_reference=fields.Char(compute="get_supplier",string="Supplier Ref. No")
     last_supplier=fields.Many2one('res.partner',compute="get_supplier",string="Last Supplier")
@@ -245,51 +262,31 @@ class CustomDashboard(models.TransientModel):
         if po.ids:
             self.avg_purchase_cost=cost_sum/len(po.ids)
 
+
+
     def addlogs(self):
-        # pass
-        lg = []
-        if self.add_log_id:
-            for ad in self.add_log_id:
-                    an = self.env['dasboard.logs'].create({
-                                'product_id': self.product_db_id.id,
-                                'description': ad.add_description,
-                                'user_id': self.env.user.id,
-                                'price': ad.add_price,
-                                'partner_id': ad.add_partner_id.id if ad.add_partner_id else False
-                            })
-                    for o in an:
-                        lg.append(o.id)
-                        print(lg,'list logs')
 
-            # self.dashboard_logs_ids = lg
-            #
-            # self.dashboard_logs_ids = [(6, 0, lg)]
-
+        if self.product_db_id:
             self.write({
-                "dashboard_logs_ids":  [(6, 0, lg)]
+                "dashboard_logs_ids":  [(0, 0, {
+                    'product_id': self.product_db_id.id,
+                    'description': self.logs_description,
+                    'user_id': self.env.user.id,
+                    'price': self.logs_price,
+                    'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
+                })]
             })
+        else:
+            raise UserError("Select Product First")
 
 
-    #     lg=[]
-    #     if self.logs_description or self.logs_partner_id or self.logs_price:
-    #         an=self.env['dasboard.logs'].create({
-    #             'product_id': self.product_db_id.id,
-    #             'description': self.logs_description,
-    #             'user_id': self.env.user.id,
-    #             'price': self.logs_price,
-    #             'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
-    #         })
-    #     for o in an:
-    #         lg.append(o.id)
-    #         print(lg,'list logs')
-        # self._campus_onchange()
-        # self.dashboard_logs_ids = lg
 
-        # self.dashboard_logs_ids = [(6, 0, lg)]
 
-        # self.write({
-        #     "dashboard_logs_ids":  [(6, 0, lg)]
-        # })
+
+
+
+
+
 
 class DashboardLogs(models.Model):
     _name = 'dasboard.logs'
@@ -312,20 +309,4 @@ class ADDlog(models.Model):
     add_description = fields.Char('Description')
     add_price = fields.Char('Price')
     add_partner_id = fields.Many2one('res.partner', string='Customer')
-
-    # def addlogs(self):
-    #     pass
-        # lg = []
-        # if self.logs_description or self.logs_partner_id or self.logs_price:
-        #     an = self.env['dasboard.logs'].create({
-        #         'product_id': self.product_db_id.id,
-        #         'description': self.logs_description,
-        #         'user_id': self.env.user.id,
-        #         'price': self.logs_price,
-        #         'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
-        #     })
-        # for o in an:
-        #     lg.append(o.id)
-        #     print(lg, 'list logs')
-
 
