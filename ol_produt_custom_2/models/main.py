@@ -145,21 +145,7 @@ class AccountmoveINherit(models.Model):
             # remove the domain if no contrat is selected
             return {'domain': {'sub_sub_grp_id': []}}
 
-    # # @api.onchange('own_reference')
-    # def check_own_ref_no_dup(self):
-    #     # check_own_ref_no = self.env['product.product'].search([('default_code', '=', self.default_code)])
-    #     self.own_ref_no=1
-    #     if self.own_ref_no:
-    #
-    #         self.own_ref_no= self.own_ref_no+1
-            # if check_own_ref_no:
-            #     for on in check_own_ref_no:
-            #         self.own_ref_no = on.own_ref_no
-            # else:
-            #     last_item = self.env['product.product'].search([('own_ref_no', '!=', False)], order='own_ref_no desc',
-            #                                                    limit=1)
-            #     print(last_item)
-            #     self.own_ref_no = last_item.own_ref_no + 1
+
     pricelist_ids= fields.One2many('product.pricelist.item','product_id',string="Price List")
 
 
@@ -186,11 +172,8 @@ class AccountmoveINherit(models.Model):
                 self.alternate_product_warning="You cannot add alternate products without saving this product. Please save this product first and then try again."
                 self.write({"alternative_products": [(6, 0, [])]})
                 return
-                # raise UserError("Please save this product first and then try again.")
         all_product.append(thisid)
-        # raise ValidationError(all_product)
 
-        # raise ValidationError(all_product)
 
         altproducts = self.env['product.product'].search([('id', 'in', all_product)])
         for altproduct in altproducts:
@@ -203,12 +186,12 @@ class AccountmoveINherit(models.Model):
         for altproduct in altproducts:
             appendableProducts=[i for i in all_product if i!=altproduct.id]
             altproduct.write({"alternative_products":[(6, 0, appendableProducts)]})
-            print('A',appendableProducts)
+
 
 
         appendableProducts = [i for i in all_product if i != self.id]
         self.write({"alternative_products": [(6, 0, appendableProducts)]})
-        print('B',appendableProducts)
+
 
     # @api.onchange('product_db_id')
     # def send_comment(self):
@@ -345,20 +328,21 @@ class InheritSaleOrderLine(models.Model):
 
     partner_id = fields.Many2one('res.partner',related="order_id.partner_id", string='Customer')
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        res = super(InheritSaleOrderLine, self).product_id_change()
-        for i in self:
-            if i.product_id:
-                product = self.env['product.product'].search([("id", "=", self.product_id.id)])
-                # print(product)
-                i.name = product.parts_family_id.name
-                # print(self.name)
+    # @api.onchange("product_id")
+    # def product_id_change(self):
+    #     res = super(InheritSaleOrderLine, self).product_id_change()
+    #     for i in self:
+    #         if i.product_id:
+    #             product = self.env['product.product'].search([("id", "=", self.product_id.id)])
+    #             # print(product)
+    #             i.name = product.parts_family_id.name
+    #             # print(self.name)
+    #
+    #         else:
+    #             self.name = ''
+    #
+    #     return res
 
-            else:
-                self.name = ''
-
-        return res
 
 
 
@@ -398,3 +382,9 @@ class Inheritstocklocation(models.Model):
         print(warehouse.name,'warehouse type')
 
     # type = fields.Selection('Type', related="cus_warehouse_id.ware_type")
+
+
+
+
+
+

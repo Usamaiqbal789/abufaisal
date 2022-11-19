@@ -303,10 +303,7 @@
 
 
                                 </group>
-<!--                                   <footer>-->
-<!--                                       <button name="addlogs" type="object" class="btn-primary" string="Add Logs"/>-->
 
-<!--                                      </footer>-->
                               </page>
                             <page string="Purchase Information">
                             <group>
@@ -387,17 +384,16 @@
                                 </div>
                             </page>
                             <page string="Inventory Movement">
-<!--                                <group>-->
+
                                      <div class="container">
-<!--                                    <div class="row">-->
+
                                         <div class="col-6">
                                     <group>
                                         <div>
                                             <h6>From</h6>
                                 <field  style="width:150px" name="from_date"></field>
                                             </div>
-<!--                                    </group>-->
-<!--                                    <group  style="width:350px">-->
+
                                     <div style="right-margin:0px">
                                     <h6>To</h6>
                                 <field  style="width:150px;" name="to_date"></field>
