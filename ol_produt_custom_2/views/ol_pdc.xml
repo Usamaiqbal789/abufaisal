@@ -465,7 +465,7 @@
 
                     <field name='pricelist_ids' colspan="4" widget="one2many_list" nolabel="1">
                         <tree editable='bottom'>
-                             <field name='pricelist_id' string="Warehouse"/>
+                             <field name='pricelist_id' string="Branch"/>
                             <field name='fixed_price'/>
                             <field name='min_price' />
                             <field name='trade_price'/>
