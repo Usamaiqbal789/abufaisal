@@ -1,0 +1,195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bi_automated_sale_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-24 11:15+0000\n"
+"PO-Revision-Date: 2021-03-24 11:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.ui.view,arch_db:bi_automated_sale_order.view_button_automate_sale_order
+msgid "Auto Process"
+msgstr "Proceso automático"
+
+#. module: bi_automated_sale_order
+#: model:ir.ui.menu,name:bi_automated_sale_order.menu_auto_sale
+msgid "Auto Sales Workflow"
+msgstr "Flujo de trabajo de ventas de automóviles"
+
+#. module: bi_automated_sale_order
+#: model:ir.model,name:bi_automated_sale_order.model_automated_sale
+msgid "Automated Sale"
+msgstr "Venta automatizada"
+
+#. module: bi_automated_sale_order
+#: model:ir.actions.act_window,name:bi_automated_sale_order.auto_sale_workflow
+msgid "Automated Workflow"
+msgstr "Flujo de trabajo automatizado"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.actions.act_window,help:bi_automated_sale_order.auto_sale_workflow
+msgid "Click to add a new automated sale entry."
+msgstr "Haga clic para agregar una nueva entrada de venta automatizada."
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: bi_automated_sale_order
+#: model:ir.model,name:bi_automated_sale_order.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__create_incoice
+msgid "Create Invoice"
+msgstr "Crear factura"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__shipping_policy__one
+msgid "Deliver all products at once"
+msgstr "Entregue todos los productos a la vez"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__shipping_policy__direct
+msgid "Deliver each product when available"
+msgstr "Entregue cada producto cuando esté disponible"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__invoicing_policy__delivery
+msgid "Delivered quantities"
+msgstr "Cantidades entregadas"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__force_invoice
+msgid "Force Invoice Date"
+msgstr "Forzar la fecha de la factura"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__id
+msgid "ID"
+msgstr "IDENTIFICACIÓN"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__invoicing_policy
+msgid "Invoicing Policy"
+msgstr "Política de facturación"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_partner__is_automated
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_users__is_automated
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_sale_order__is_related
+msgid "Is automated Workflow"
+msgstr "Es flujo de trabajo automatizado"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.ui.view,arch_db:bi_automated_sale_order.form_automate_sale_order_workflow
+msgid "Order Configuration"
+msgstr "Configuración de pedidos"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__invoicing_policy__order
+msgid "Ordered quantities"
+msgstr "Cantidades ordenadas"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__payment_journal
+msgid "Payment Journal"
+msgstr "Diario de pagos"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__register_payment
+msgid "Register Payment"
+msgstr "Registro de pago"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__sales_journal
+msgid "Sales Journal"
+msgstr "Diario de ventas"
+
+#. module: bi_automated_sale_order
+#: model:ir.model,name:bi_automated_sale_order.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__shipping_policy
+msgid "Shipping Policy"
+msgstr "Politica de envios"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__validate_invoice
+msgid "Vaidate Invoice"
+msgstr "Validar factura"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__validation_order
+msgid "Validation Order"
+msgstr "Orden de validación"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__validation_picking
+msgid "Validation Picking"
+msgstr "Selección de validación"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.ui.view,arch_db:bi_automated_sale_order.form_automate_sale_order_workflow
+msgid "Workflow Option"
+msgstr "Opción de flujo de trabajo"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_partner__work_process_id
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_users__work_process_id
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_sale_order__work_process_order_id
+msgid "Workflow Process"
+msgstr "Opción de flujo de trabajo"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__force_transfer
+msgid "force transfer,even if is unavailable."
+msgstr "forzar transferencia, incluso si no está disponible."

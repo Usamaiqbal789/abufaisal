@@ -1,0 +1,195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bi_automated_sale_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-24 09:46+0000\n"
+"PO-Revision-Date: 2021-03-24 09:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.ui.view,arch_db:bi_automated_sale_order.view_button_automate_sale_order
+msgid "Auto Process"
+msgstr "عملية تلقائية"
+
+#. module: bi_automated_sale_order
+#: model:ir.ui.menu,name:bi_automated_sale_order.menu_auto_sale
+msgid "Auto Sales Workflow"
+msgstr "سير عمل مبيعات السيارات"
+
+#. module: bi_automated_sale_order
+#: model:ir.model,name:bi_automated_sale_order.model_automated_sale
+msgid "Automated Sale"
+msgstr "البيع الآلي"
+
+#. module: bi_automated_sale_order
+#: model:ir.actions.act_window,name:bi_automated_sale_order.auto_sale_workflow
+msgid "Automated Workflow"
+msgstr "سير العمل الآلي"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.actions.act_window,help:bi_automated_sale_order.auto_sale_workflow
+msgid "Click to add a new automated sale entry."
+msgstr "انقر لإضافة إدخال بيع آلي جديد."
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__company_id
+msgid "Company"
+msgstr "شركة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model,name:bi_automated_sale_order.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__create_incoice
+msgid "Create Invoice"
+msgstr "إنشاء فاتورة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__shipping_policy__one
+msgid "Deliver all products at once"
+msgstr "تسليم جميع المنتجات دفعة واحدة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__shipping_policy__direct
+msgid "Deliver each product when available"
+msgstr "تسليم كل منتج عند توفره"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__invoicing_policy__delivery
+msgid "Delivered quantities"
+msgstr "الكميات المسلمة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__force_invoice
+msgid "Force Invoice Date"
+msgstr "تاريخ الفاتورة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__id
+msgid "ID"
+msgstr "بطاقة تعريف"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__invoicing_policy
+msgid "Invoicing Policy"
+msgstr "سياسة الفواتير"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_partner__is_automated
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_users__is_automated
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_sale_order__is_related
+msgid "Is automated Workflow"
+msgstr "هو سير العمل الآلي"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale____last_update
+msgid "Last Modified on"
+msgstr "تاريخ آخر تعديل"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__name
+msgid "Name"
+msgstr "اسم"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.ui.view,arch_db:bi_automated_sale_order.form_automate_sale_order_workflow
+msgid "Order Configuration"
+msgstr "ترتيب التكوين"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields.selection,name:bi_automated_sale_order.selection__automated_sale__invoicing_policy__order
+msgid "Ordered quantities"
+msgstr "الكميات المطلوبة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__payment_journal
+msgid "Payment Journal"
+msgstr "مجلة الدفع"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__register_payment
+msgid "Register Payment"
+msgstr "تسجيل الدفع"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__sales_journal
+msgid "Sales Journal"
+msgstr "مجلة المبيعات"
+
+#. module: bi_automated_sale_order
+#: model:ir.model,name:bi_automated_sale_order.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__shipping_policy
+msgid "Shipping Policy"
+msgstr "سياسة الشحن"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__validate_invoice
+msgid "Vaidate Invoice"
+msgstr "التحقق من صحة الفاتورة"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__validation_order
+msgid "Validation Order"
+msgstr "أمر التحقق"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__validation_picking
+msgid "Validation Picking"
+msgstr "انتقاء التحقق من الصحة"
+
+#. module: bi_automated_sale_order
+#: model_terms:ir.ui.view,arch_db:bi_automated_sale_order.form_automate_sale_order_workflow
+msgid "Workflow Option"
+msgstr "خيار سير العمل"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_partner__work_process_id
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_res_users__work_process_id
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_sale_order__work_process_order_id
+msgid "Workflow Process"
+msgstr "عملية سير العمل"
+
+#. module: bi_automated_sale_order
+#: model:ir.model.fields,field_description:bi_automated_sale_order.field_automated_sale__force_transfer
+msgid "force transfer,even if is unavailable."
+msgstr "النقل الإجباري ، حتى لو لم يكن متاحًا."
