@@ -62,15 +62,12 @@ class AutomatedSaleOrder(models.Model):
 
 class InheritPartner(models.Model):
 	_inherit = "res.partner"
-
-	is_automated = fields.Boolean(string="Is automated Workflow")
 	work_process_id = fields.Many2one("automated.sale",string="Workflow Process")
 
 
 class InheritSale(models.Model):
 	_inherit = "sale.order"
 
-	is_related = fields.Boolean(related="partner_id.is_automated")
 	work_process_order_id = fields.Many2one("automated.sale",string="Workflow Process")
 
 	@api.onchange("partner_id")

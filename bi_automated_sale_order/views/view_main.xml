@@ -77,9 +77,8 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-            	<xpath expr="//group[@name='sale_info']" position="inside">
-            		<field name="is_related" invisible="1"/>
-					<field name="work_process_order_id" attrs="{'invisible': [('is_related', '=', False)]}" />
+            	<xpath expr="//group[@name='partner_id']" position="after">
+					<field name="work_process_order_id" required="1"/>
 			   </xpath>
         	</field>
 		</record>
