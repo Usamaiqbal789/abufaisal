@@ -80,7 +80,10 @@
             	<xpath expr="//field[@name='partner_id']" position="after">
 					<field name="work_process_order_id" required="1"/>
 			   </xpath>
-			   <xpath expr="//button[@id='checking_ol']" position="attributes">
+			   <xpath expr="//button[@id='action_confirm']" position="attributes">
+					<attribute name="attrs">{'invisible': 1}</attribute>
+			   </xpath>
+			   <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
 					<attribute name="attrs">{'invisible': 1}</attribute>
 			   </xpath>
         	</field>
