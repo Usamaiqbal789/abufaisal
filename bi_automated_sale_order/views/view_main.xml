@@ -84,6 +84,16 @@
         	</field>
 		</record>
 
+		<record id="view_res_partner_is_automate" model="ir.ui.view">
+			<field name="name">view.res.partner.is.automated</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+			   <xpath expr="//group[@name='sale']" position="inside">
+					<field name="work_process_id"/>
+			   </xpath>
+			</field>
+		</record>
 
 		
 		
