@@ -83,7 +83,7 @@
 			   <xpath expr="//button[@id='action_confirm']" position="attributes">
 					<attribute name="attrs">{'invisible': 1}</attribute>
 			   </xpath>
-			   <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+			   <xpath expr="//header/button[@name='action_confirm'][1]" position="attributes">
 					<attribute name="attrs">{'invisible': 1}</attribute>
 			   </xpath>
         	</field>
