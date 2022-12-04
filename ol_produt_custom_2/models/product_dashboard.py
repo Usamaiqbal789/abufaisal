@@ -110,7 +110,8 @@ class CustomDashboard(models.TransientModel):
     add_log_id = fields.Many2many(comodel_name='add.log')
 
 
-    @api.onchange('product_db_id')
+    # @api.onchange('product_db_id')
+    @api.depends('product_db_id')
     def get_warehoueinfo(self):
         warehoues= self.env['stock.warehouse'].search([])
         locations=[]
