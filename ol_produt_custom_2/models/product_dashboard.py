@@ -148,11 +148,11 @@ class CustomDashboard(models.TransientModel):
                 # # print(inventory,'location in stock')
                 #
                 #
-                # re_order=self.env['stock.warehouse.orderpoint'].search([('location_id','=',l.id),('product_id','=',self.product_db_id.id)])
-                # for ro in re_order:
-                #     if ro:
-                #         reorder_qty=str(ro.product_min_qty)
-                #         reorder_level=str(ro.product_max_qty)
+                re_order=self.env['stock.warehouse.orderpoint'].search([('location_id','=',l.id),('product_id','=',self.product_db_id.id)])
+                for ro in re_order:
+                    if ro:
+                        reorder_qty=str(ro.product_min_qty)
+                        reorder_level=str(ro.product_max_qty)
                 # for inv in inventory:
                 #     print(inv.id,'inventory')
                 #     print(inv.product_id.name,'product')
