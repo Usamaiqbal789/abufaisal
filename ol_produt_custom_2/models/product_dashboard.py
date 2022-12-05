@@ -81,8 +81,8 @@ class CustomDashboard(models.TransientModel):
     own_ref_no = fields.Char(string="Own Ref No", related='product_db_id.own_ref_no')
     part_no = fields.Char(string="Part No", related='product_db_id.default_code')
     product_brand = fields.Many2one(string="Product Brand", related='product_db_id.brand_id')
-    # db_detailed_type = fields.Selection(related="product_db_id.type", string='Stock Type')
-    db_detailed_type = fields.Selection(related="product_db_id.detailed_type", string='Stock Type')
+    db_detailed_type = fields.Selection(related="product_db_id.type", string='Stock Type')
+    # db_detailed_type = fields.Selection(related="product_db_id.detailed_type", string='Stock Type')
     product_description= fields.Text('Product Details',related="product_db_id.description_sale")
     # product_description = fields.Html('Product Details', related="product_db_id.description")
     db_origin = fields.Many2one('res.country',related='product_db_id.origin', string='Origin')
@@ -129,10 +129,10 @@ class CustomDashboard(models.TransientModel):
 
         data_all=[]
         for w in warehoues:
-            print(w,'Warehouse')
+
             quantities = 0
             locations=get_locations(w.view_location_id)
-            print(locations,'Location')
+
             loations_stock=[]
             price_list = self.env['product.pricelist'].search([('warehouse_id', '=', w.id)])
             price_list_item = self.env['product.pricelist.item'].search([('pricelist_id','=',price_list.id),('product_id', '=', self.product_db_id.id)])
@@ -160,7 +160,7 @@ class CustomDashboard(models.TransientModel):
                     if  q.quantity>0 and l.id not in loations_stock:
                         loations_stock.append(l.id)
                 #     quantities+=inv.quantity
-                #     print(quantities,'on hand quant')
+
             data_all.append({
                 'branch':w.id,
                 'loc_ids':[(6,0,loations_stock)],
@@ -174,7 +174,7 @@ class CustomDashboard(models.TransientModel):
                 'reorder_level':reorder_level,
                 'warehouse_shop':w.ware_type
             })
-            print(data_all)
+
 
         enter_data_shop=self.env['dashboard.shop']
         enter_data_warehouse=self.env['dashboard.warehouseshop']
@@ -189,11 +189,7 @@ class CustomDashboard(models.TransientModel):
                 enter_data_warehouse+=dev_lines
         self.db_shop_ids = enter_data_shop
         self.db_warehouse_ids = enter_data_warehouse
-            # print(enter_data_shop,'Shop')
-            # print(enter_data_warehouse,'Ware House')
 
-        # self.db_warehouse_ids=enter_data_warehouse
-        # self.db_shop_ids=enter_data_shop
 
 
     quotation_his_id = fields.Many2many(comodel_name='sale.order.line',
@@ -297,7 +293,6 @@ class CustomDashboard(models.TransientModel):
             })
         else:
             raise UserError("Select Product First")
-
 
 
 

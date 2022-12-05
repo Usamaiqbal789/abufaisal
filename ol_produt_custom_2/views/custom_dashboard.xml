@@ -34,10 +34,37 @@
                             <group>
                                 <field name="product_db_id" options="{'no_create_edit': True, 'no_create': True}"/>
 
+
+
                             </group>
-                            <group >
+
+
+                            <group>
+                                 <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+
+                                 <button
+                                name="%(action_custom_dashboard)d"
+                                class="btn-primary"
+                                string="Refresh"
+                                type="action"
+                            />
                                 <field name="product_image" widget="image"  class="oe_avatar zoom"  readonly="1" nolabel="1" force_save="1"/>
+                             </div>
+                             </div>
+                             </div>
                             </group>
+<!--                            <div>-->
+<!--                                 <button-->
+<!--                                name="%(action_custom_dashboard)d"-->
+<!--                                string="Refresh"-->
+<!--                                type="action"-->
+<!--                                class="oe_highlight"-->
+
+<!--                            />-->
+<!--                            </div>-->
+
 
                         </group>
                         <notebook>
@@ -60,26 +87,9 @@
                                         <field name="product_brand" readonly="1"/>
                                         <field name="db_make_type" readonly="1"/>
 
-<!--                                    <group>-->
 
-<!--                                    </group>-->
                                 </group>
                                 </group>
-
-<!--                                 <group>-->
-
-<!--                                              <h2>Groups</h2>-->
-<!--                                        <field name="db_product_group" readonly="1" nolabel="1">-->
-<!--                                            <tree>-->
-<!--                                                <field name="grp_id" string="Groups"/>-->
-<!--                                                <field name="sub_grp_id" string="Sub Group"/>-->
-<!--                                                <field name="sub_sub_grp_id" string="Sub Sub Group"/>-->
-<!--                                            </tree>-->
-<!--                                        </field>-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-
-
-<!--                                     </group>-->
 
                                 <div class="container">
                                     <div class="row">
@@ -212,31 +222,7 @@
                                         </div>
                                     </div>
 
-<!--                                    <hr style="width:100%;text-align:left;margin-left:0"/>-->
-<!--                                <h1 style="text-decoration: underline;color:#D48658;">POS</h1>-->
-<!--                                <div class="container">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-12">-->
-<!--                                            <h3 style="color:##545254;text-align: center;">Point Of Sale</h3>-->
-<!--                                            <br/>-->
-<!--                                            <field name="pos_db_ids"  readonly="1">-->
-<!--                                                <tree>-->
-<!--                                                    <field  style="max-width:5px" name="order_id"></field>-->
-<!--                                                    <field name="create_date"></field>-->
-<!--&lt;!&ndash;                                                    <field name="display_name"></field>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                    <field name="partner_id"></field>&ndash;&gt;-->
-<!--                                                    <field name="qty"></field>-->
-<!--                                                    <field name="discount"></field>-->
 
-
-<!--                                                    <field name="price_unit"></field>-->
-<!--                                                    <field name="price_subtotal_incl"></field>-->
-
-<!--                                                </tree>-->
-<!--                                            </field>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
 
                                      <hr style="width:100%;text-align:left;margin-left:0"/>
                                 <h1 style="text-decoration: underline;color:#D48658;">INVOICES</h1>
@@ -261,23 +247,7 @@
                                                 </tree>
                                             </field>
 
-<!--                                             <h3 style="color:##545254;text-align: center;">Pos Invoice</h3>-->
-<!--                                            <br/>-->
-<!--                                            <field name="posinvoice_db_ids"  readonly="1">-->
-<!--                                                <tree>-->
-<!--                                                    <field name="move_id"></field>-->
-<!--&lt;!&ndash;                                                    <field name="ref"></field>&ndash;&gt;-->
-<!--                                                    <field name="date"></field>-->
-<!--                                                    <field name="partner_id"></field>-->
 
-<!--                                                    <field name="quantity"></field>-->
-<!--&lt;!&ndash;                                                    <field name="qty_delivered"></field>&ndash;&gt;-->
-<!--                                                    <field name="product_uom_id"></field>-->
-<!--                                                    <field name="price_unit"></field>-->
-<!--                                                    <field name="price_subtotal" sum="Total Of Price Subtotal"></field>-->
-<!--                                                    <field name="parent_state"></field>-->
-<!--                                                </tree>-->
-<!--                                            </field>-->
                                         </div>
                                     </div>
                                 </div>
