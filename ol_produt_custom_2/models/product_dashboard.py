@@ -157,8 +157,8 @@ class CustomDashboard(models.TransientModel):
                 #     print(inv.id,'inventory')
                 #     print(inv.product_id.name,'product')
                 #
-                #     if inv.quantity>0 and l.id not in loations_stock:
-                #         loations_stock.append(l.id)
+                    if  q.quantity>0 and l.id not in loations_stock:
+                        loations_stock.append(l.id)
                 #     quantities+=inv.quantity
                 #     print(quantities,'on hand quant')
             data_all.append({
