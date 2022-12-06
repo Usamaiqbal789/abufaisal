@@ -396,28 +396,29 @@
                     <field name="sub_grp_id" string="Sub Group"/>
                     <field name="sub_sub_grp_id" string="Sub Sub Group"/>
                 </xpath>
+
             </field>
         </record>
 
-       <record model="ir.ui.view" id="view_inherit_product_product_search_panel_in_tree_view">
-           <field name="name">product.product.form.search</field>-->
-           <field name="model">product.product</field>
-           <field name="inherit_id" ref="product.product_search_form_view"/>
-           <field name="type">form</field>
-           <field name="arch" type="xml">
-               <xpath expr ="//search" position ="inside">
-                   <searchpanel>
-                       <field name="brand_id" string="Brand" select="multi" enable_counters="1"/>
-                       <field name="grp_id" string="Group" select="multi" enable_counters="1"/>
-                       <field name="sub_grp_id" string="Sub Group" select="multi" enable_counters="1"/>
-                       <field name="sub_sub_grp_id" string="Sub Sub Group" select="multi" enable_counters="1"/>
-                       <field name="alternative_products" string="Alernative Products" select="multi" enable_counters="1"/>
-                   </searchpanel>
-            </xpath>
+        <record model="ir.ui.view" id="view_inherit_product_product_search_panel_in_tree_view">
+            <field name="name">product.product.form.search</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr ="//search" position ="inside">
+                    <searchpanel>
+                        <field name="brand_id" string="Brand" select="multi" enable_counters="1"/>
+                        <field name="grp_id" string="Group" select="multi" enable_counters="1"/>
+                        <field name="sub_grp_id" string="Sub Group" select="multi" enable_counters="1"/>
+                        <field name="sub_sub_grp_id" string="Sub Sub Group" select="multi" enable_counters="1"/>
+                        <field name="alternative_products" string="Alernative Products" select="multi" enable_counters="1"/>
 
-        </field>
+                    </searchpanel>
+                </xpath>
+
+            </field>
         </record>
-
         <record model="ir.ui.view" id="view_inherit_stock_warehouse">
             <field name="name">stock.warehouse.form</field>
             <field name="model">stock.warehouse</field>
@@ -427,6 +428,7 @@
                 <xpath expr="//field[@name='code']" position="after">
                     <field name="ware_type" string="Warehouse/Shop"/>
                 </xpath>
+
             </field>
         </record>
 
@@ -442,7 +444,10 @@
                         <field name="type" string="Type"/>
                         <field name="cus_warehouse_id" invisible="1"/>
                     </group>
+
+
                 </xpath>
+
             </field>
         </record>
 
@@ -454,10 +459,13 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='fixed_price']" position="after">
+
                     <field name="min_price"/>
                     <field name="trade_price"/>
                     <field name="export_price"/>
+
                 </xpath>
+
             </field>
         </record>
 
@@ -473,6 +481,7 @@
                         <field style="width:300px" name="warehouse_id"/>
                     </group>
                 </xpath>
+
             </field>
         </record>
 
