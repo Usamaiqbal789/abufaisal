@@ -5,47 +5,29 @@
         <record id="test_field_form_2" model="ir.ui.view">
             <field name="name">test.inherit.view.form</field>
             <field name="model">brand.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <form string="Group">
                     <sheet>
                         <group>
-
                             <group>
-
                                 <field name="name" required="1"/>
                                 <field name="code"/>
                                 <field name="description"/>
-
                             </group>
-
                         </group>
-
-
                     </sheet>
-
                 </form>
-
             </field>
         </record>
-
-
         <record id="test_tree_field_2" model="ir.ui.view">
             <field name="name">test.inherit.view.tree</field>
             <field name="model">brand.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <tree>
-
-
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
-
-
-
                 </tree>
-
             </field>
         </record>
 
@@ -56,36 +38,22 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">brand.custom</field>
             <field name="view_mode">tree,kanban,form</field>
-            <!--        <field name="help" type="html">-->
-            <!--            <p class="o_view_nocontent_smiling_face">-->
-            <!--                No Instance Found-->
-            <!--            </p>-->
-            <!--        </field>-->
-
         </record>
 
-        <!--        sub group-->
         <record id="test_field_form_3" model="ir.ui.view">
             <field name="name">sub.group.custom.view.form</field>
             <field name="model">sub.group.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <group>
-
                             <field name="name" required="1"/>
                             <field name="code"/>
                             <field name="description"/>
                             <field name="grp_id"/>
-
-
                         </group>
-
                     </sheet>
-
                 </form>
-
             </field>
         </record>
 
@@ -93,62 +61,39 @@
         <record id="test_tree_field_3" model="ir.ui.view">
             <field name="name">sub.group.custom.view.tree</field>
             <field name="model">sub.group.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <tree>
-
-
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
-
-
-
                 </tree>
-
             </field>
         </record>
-
-
 
         <record id="form_credent_3" model="ir.actions.act_window">
             <field name="name">Sub Group</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">sub.group.custom</field>
             <field name="view_mode">tree,kanban,form</field>
-            <!--        <field name="help" type="html">-->
-            <!--            <p class="o_view_nocontent_smiling_face">-->
-            <!--                No Instance Found-->
-            <!--            </p>-->
-            <!--        </field>-->
-
         </record>
 
 
-        <!--        sub sub group-->
 
         <record id="test_field_form_4" model="ir.ui.view">
             <field name="name">sub.sub.group.custom.view.form</field>
             <field name="model">sub.sub.group.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <group>
-
                             <field name="name" required="1"/>
                             <field name="code"/>
                             <field name="description"/>
                             <field name="grp_id"/>
                             <field name="sub_grp_id"/>
-
-
                         </group>
-
                     </sheet>
-
                 </form>
-
             </field>
         </record>
 
@@ -156,18 +101,14 @@
         <record id="test_tree_field_4" model="ir.ui.view">
             <field name="name">sub.sub.group.custom.view.tree</field>
             <field name="model">sub.sub.group.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <tree>
-
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
                     <field name="grp_id"/>
                     <field name="sub_grp_id"/>
-
                 </tree>
-
             </field>
         </record>
 
@@ -178,34 +119,22 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">sub.sub.group.custom</field>
             <field name="view_mode">tree,kanban,form</field>
-            <!--        <field name="help" type="html">-->
-            <!--            <p class="o_view_nocontent_smiling_face">-->
-            <!--                No Instance Found-->
-            <!--            </p>-->
-            <!--        </field>-->
-
         </record>
 
-        <!--        brand-->
+
         <record id="test_field_form_5" model="ir.ui.view">
             <field name="name">brand.main.custom.view.form</field>
             <field name="model">brand.main.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <group>
-
                             <field name="name" required="1"/>
                             <field name="code"/>
                             <field name="description"/>
-
                         </group>
-
                     </sheet>
-
                 </form>
-
             </field>
         </record>
 
@@ -213,19 +142,12 @@
         <record id="test_tree_field_4" model="ir.ui.view">
             <field name="name">brand.main.custom.view.tree</field>
             <field name="model">brand.main.custom</field>
-            <!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
             <field name="arch" type="xml">
                 <tree>
-
-
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
-
-
-
                 </tree>
-
             </field>
         </record>
 
@@ -267,14 +189,9 @@
             <field name="model">product.make.type</field>
             <field name="arch" type="xml">
                 <tree>
-
-
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
-
-
-
                 </tree>
 
             </field>
@@ -299,11 +216,9 @@
                 <form>
                     <sheet>
                         <group>
-
                             <field name="name" required="1"/>
                             <field name="code"/>
                             <field name="description"/>
-
                         </group>
 
                     </sheet>
@@ -319,14 +234,9 @@
             <field name="model">parts.family</field>
             <field name="arch" type="xml">
                 <tree>
-
-
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
-
-
-
                 </tree>
 
             </field>
@@ -340,13 +250,6 @@
             <field name="res_model">parts.family</field>
             <field name="view_mode">tree,kanban,form</field>
         </record>
-
-
-
-
-
-
-
 
 
 
@@ -369,9 +272,7 @@
             <field name="arch" type="xml">
                 <xpath expr="/form/sheet/notebook" position="inside">
                     <page string="Images" name="multi_image">
-
                         <field name="attachment_ids" string="Attachments" widget="many2many_kanban" mode="kanban"/>
-
                     </page>
                 </xpath>
             </field>
@@ -447,22 +348,13 @@
                             <field name="lst_price"/>
                         </tree>
                     </field>
-
-
-
-
-
-
                 </xpath>
                 <xpath expr="//field[@name='uom_po_id']" position="after">
                     <field name="oem_code"/>
-
                     <field name="own_ref_no"/>
                     <field name="origin"/>
                     <field name="product_make_type_id"/>
-
                     <h5 style="color:##545254;text-align: center;padding-top:10Fpx;">Price Table</h5>
-
                     <field name='pricelist_ids' colspan="4" widget="one2many_list" nolabel="1">
                         <tree editable='bottom'>
                              <field name='pricelist_id' string="Branch"/>
@@ -470,17 +362,9 @@
                             <field name='min_price' />
                             <field name='trade_price'/>
                             <field name='export_price'/>
-
-
-
                         </tree>
                      </field>
-
-
                 </xpath>
-
-
-
             </field>
         </record>
 
@@ -507,37 +391,58 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//search" position="inside">
-
+<!--                    <search>-->
                     <field name="brand_id" string="Brand"/>
                     <field name="grp_id" string="Group"/>
                     <field name="sub_grp_id" string="Sub Group"/>
                     <field name="sub_sub_grp_id" string="Sub Sub Group"/>
-
-
-                </xpath>
-
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="view_inherit_product_product_search_panel_in_tree_view">
-            <field name="name">product.product.form.search</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_search_form_view"/>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <xpath expr ="//search" position ="inside">
-                    <searchpanel>
+ <searchpanel>
                         <field name="brand_id" string="Brand" select="multi" enable_counters="1"/>
                         <field name="grp_id" string="Group" select="multi" enable_counters="1"/>
                         <field name="sub_grp_id" string="Sub Group" select="multi" enable_counters="1"/>
                         <field name="sub_sub_grp_id" string="Sub Sub Group" select="multi" enable_counters="1"/>
                         <field name="alternative_products" string="Alernative Products" select="multi" enable_counters="1"/>
-
                     </searchpanel>
                 </xpath>
-
             </field>
         </record>
+
+<!--        <record model="ir.ui.view" id="view_inherit_product_product_search_panel_in_tree_view">-->
+<!--            <field name="name">product.product.form.search</field>-->
+<!--            <field name="model">product.product</field>-->
+<!--            <field name="inherit_id" ref="product.product_search_form_view"/>-->
+<!--            <field name="type">form</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr ="//search" position ="inside">-->
+<!--                    <searchpanel>-->
+<!--                        <field name="brand_id" string="Brand" select="multi" enable_counters="1"/>-->
+<!--                        <field name="grp_id" string="Group" select="multi" enable_counters="1"/>-->
+<!--                        <field name="sub_grp_id" string="Sub Group" select="multi" enable_counters="1"/>-->
+<!--                        <field name="sub_sub_grp_id" string="Sub Sub Group" select="multi" enable_counters="1"/>-->
+<!--                        <field name="alternative_products" string="Alernative Products" select="multi" enable_counters="1"/>-->
+<!--                    </searchpanel>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+<!--         <record model="ir.ui.view" id="view_inherit_product_product_search_panel_in_tree_view_2">-->
+<!--            <field name="name">product.product.form.search.panel</field>-->
+<!--            <field name="model">product.product</field>-->
+<!--            <field name="inherit_id" ref="product.product_product_tree_view"/>-->
+<!--            <field name="type">form</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr ="//search" position ="inside">-->
+<!--                    <searchpanel>-->
+<!--                        <field name="brand_id" string="Brand" select="multi" enable_counters="1"/>-->
+<!--                        <field name="grp_id" string="Group" select="multi" enable_counters="1"/>-->
+<!--                        <field name="sub_grp_id" string="Sub Group" select="multi" enable_counters="1"/>-->
+<!--                        <field name="sub_sub_grp_id" string="Sub Sub Group" select="multi" enable_counters="1"/>-->
+<!--                        <field name="alternative_products" string="Alernative Products" select="multi" enable_counters="1"/>-->
+<!--                    </searchpanel>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
         <record model="ir.ui.view" id="view_inherit_stock_warehouse">
             <field name="name">stock.warehouse.form</field>
             <field name="model">stock.warehouse</field>
@@ -545,12 +450,8 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='code']" position="after">
-
                     <field name="ware_type" string="Warehouse/Shop"/>
-
-
                 </xpath>
-
             </field>
         </record>
 
@@ -566,10 +467,7 @@
                         <field name="type" string="Type"/>
                         <field name="cus_warehouse_id" invisible="1"/>
                     </group>
-
-
                 </xpath>
-
             </field>
         </record>
 
@@ -581,20 +479,10 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='fixed_price']" position="after">
-                    <!--              <group>-->
-
                     <field name="min_price"/>
                     <field name="trade_price"/>
                     <field name="export_price"/>
-
-
-                    <!--             </group>-->
-
-
                 </xpath>
-
-
-
             </field>
         </record>
 
@@ -605,18 +493,11 @@
             <field name="inherit_id" ref="product.product_pricelist_view"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <!--         <xpath expr="//field[@name='name']" position="after">-->
                 <xpath expr="//div[@class='oe_title']" position="after">
                     <group>
-
                         <field style="width:300px" name="warehouse_id"/>
-
-
                     </group>
-
-
                 </xpath>
-
             </field>
         </record>
 
@@ -629,17 +510,9 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_ref']" position="after">
                      <field  name="order_type"/>
-
                 </xpath>
             </field>
         </record>
-
-
-
-
-
-
-
 
     </data>
 </odoo>

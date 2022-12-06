@@ -2,6 +2,16 @@
 
 <odoo>
     <data>
+        <record id="inherit_view_dashboard_product_tree" model="ir.ui.view">
+    <field name="name">product.dashboard.inherit.tree</field>
+    <field name="model">product.product</field>
+    <field eval="8" name="priority"/>
+    <field name="arch" type="xml">
+        <tree string="Add product">
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
         <record id="product_dashboard_form" model="ir.ui.view">
             <field name="name">product.bashboard.view.form</field>
             <field name="model">product.dashboard</field>
@@ -32,7 +42,8 @@
                         <group>
 
                             <group>
-                                <field name="product_db_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                                <field name="product_db_id" context="{'tree_view_ref': 'inherit_view_dashboard_product_tree'}" options="{'no_create_edit': True, 'no_create': True}">
+                                </field>
 
 
 
@@ -45,25 +56,17 @@
                                         <div class="col-12">
 
                                  <button
-                                name="%(action_custom_dashboard)d"
+                                name="action_refresh"
                                 class="btn-primary"
                                 string="Refresh"
-                                type="action"
+                                type="object"
                             />
                                 <field name="product_image" widget="image"  class="oe_avatar zoom"  readonly="1" nolabel="1" force_save="1"/>
                              </div>
                              </div>
                              </div>
                             </group>
-<!--                            <div>-->
-<!--                                 <button-->
-<!--                                name="%(action_custom_dashboard)d"-->
-<!--                                string="Refresh"-->
-<!--                                type="action"-->
-<!--                                class="oe_highlight"-->
 
-<!--                            />-->
-<!--                            </div>-->
 
 
                         </group>
@@ -76,6 +79,7 @@
                                 <group>
                                     <group>
                                         <field name="part_no"/>
+                                        <field name="ir_mod_id"/>
                                         <field name="part_name" readonly="1"/>
                                         <field name="own_ref_no" readonly="1"/>
                                         <field name="spec" readonly="1"/>
