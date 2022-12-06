@@ -391,18 +391,10 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//search" position="inside">
-
                     <field name="brand_id" string="Brand"/>
                     <field name="grp_id" string="Group"/>
                     <field name="sub_grp_id" string="Sub Group"/>
                     <field name="sub_sub_grp_id" string="Sub Sub Group"/>
-                     <searchpanel>
-                        <field name="brand_id" string="Brand" select="multi" enable_counters="1"/>
-                        <field name="grp_id" string="Group" select="multi" enable_counters="1"/>
-                        <field name="sub_grp_id" string="Sub Group" select="multi" enable_counters="1"/>
-                        <field name="sub_sub_grp_id" string="Sub Sub Group" select="multi" enable_counters="1"/>
-                        <field name="alternative_products" string="Alernative Products" select="multi" enable_counters="1"/>
-                    </searchpanel>
                 </xpath>
             </field>
         </record>
