@@ -79,7 +79,6 @@
                                 <group>
                                     <group>
                                         <field name="part_no"/>
-                                        <field name="ir_mod_id"/>
                                         <field name="part_name" readonly="1"/>
                                         <field name="own_ref_no" readonly="1"/>
                                         <field name="spec" readonly="1"/>

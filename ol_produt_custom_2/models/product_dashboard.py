@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 import base64
 import requests
 import datetime
@@ -74,7 +75,6 @@ class CustomDashboard(models.TransientModel):
     _rec_name = 'product_db_id'
 
     product_db_id = fields.Many2one('product.product', string="Part Number")
-    ir_mod_id = fields.Many2one('ir.module.module', string="Model")
     product_image = fields.Binary('Image',related='product_db_id.image_1920')
     # product_image = fields.Binary('Image')
 
@@ -94,8 +94,7 @@ class CustomDashboard(models.TransientModel):
     sale_uom = fields.Many2one('uom.uom',related='product_db_id.uom_id' ,string='Sale UOM')
     purchase_uom = fields.Many2one('uom.uom',related='product_db_id.uom_id' ,string='Purchase UOM')
     alternatives = fields.Many2many('product.product', related='product_db_id.alternative_products' , string='Subtitute products')
-    from_date = fields.Date(string="From")
-    to_date = fields.Date(string="TO")
+    to_date = fields.Date(string="TO", default=fields.Datetime.now())
     db_warehouse_ids = fields.Many2many('dashboard.warehouseshop',compute='get_warehoueinfo')
     state = fields.Many2many('stock.warehouse',string="state")
     db_shop_ids = fields.Many2many(comodel_name='dashboard.shop',compute='get_warehoueinfo')
@@ -104,7 +103,13 @@ class CustomDashboard(models.TransientModel):
     logs_partner_id = fields.Many2one('res.partner', string='Customer')
     dashboard_logs_ids = fields.Many2many('dasboard.logs', string='Dashboard Logs')
 
+    @api.onchange('to_date')
+    def sub_six_months(self):
+        if self.to_date:
+            self.from_date = self.to_date - relativedelta(months=6)
+            print(self.from_date)
 
+    from_date = fields.Date(string="From", default=sub_six_months)
 
     @api.depends('product_db_id')
     def add_log_ids_dash(self):
