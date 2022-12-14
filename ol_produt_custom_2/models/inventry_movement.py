@@ -190,80 +190,80 @@ class InheritProductDashboard(models.TransientModel):
 
 
 
-    pos_db_ids = fields.Many2many(comodel_name='pos.order.line', compute="_get_posorder_history")
+    # pos_db_ids = fields.Many2many(comodel_name='pos.order.line', compute="_get_posorder_history")
 
-    @api.onchange('product_db_id')
-    def _get_posorder_history(self):
-        pos_orderline = self.env['pos.order.line'].search(
-            [("product_id", "=", self.product_db_id.id)])
-        # print(pos_orderline.product_id.name, 'pos product')
+    # @api.onchange('product_db_id')
+    # def _get_posorder_history(self):
+    #     pos_orderline = self.env['pos.order.line'].search(
+    #         [("product_id", "=", self.product_db_id.id)])
+    #     # print(pos_orderline.product_id.name, 'pos product')
+    #
+    #     # print(pos_orderline.order_id.picking_ids, 'pos delivery ')
+    #     pos_list = []
+    #     for pos in pos_orderline:
+    #         if pos.order_id.state == 'done':
+    #             pos_list.append(pos.id)
+    #             # print(pos_list, 'pos list')
+    #
+    #     self.pos_db_ids = [(6, 0, pos_list)]
 
-        # print(pos_orderline.order_id.picking_ids, 'pos delivery ')
-        pos_list = []
-        for pos in pos_orderline:
-            if pos.order_id.state == 'done':
-                pos_list.append(pos.id)
-                # print(pos_list, 'pos list')
+    # pos_delivery = fields.Many2many(comodel_name='stock.move', compute="_get_posdel_history")
+    #
+    # @api.onchange('product_db_id')
+    # def _get_posdel_history(self):
+    #
+    #     all_warehousetransfer = []
+    #     if self.state:
+    #         for a in self.state:
+    #             # warehouseids = int(str(a.id)[6:])
+    #             warehouseids = a._origin.id
+    #
+    #             all_warehousetransfer.append(warehouseids)
+    #
+    #     stock_move = self.env['stock.move'].search(
+    #         [("product_id", "=", self.product_db_id.id),
+    #          ('picking_id.picking_type_id.warehouse_id.id', 'in', all_warehousetransfer), '&',
+    #          ('create_date', '>=', self.from_date),
+    #          ('create_date', '<=', self.to_date)])
+    #
+    #     posdel_list = []
+    #     for line in stock_move:
+    #         if line.picking_id.picking_type_id.name == 'PoS Orders':
+    #             posdel_list.append(line.id)
+    #
+    #     self.pos_delivery = [(6, 0, posdel_list)]
 
-        self.pos_db_ids = [(6, 0, pos_list)]
+    # pos_order_two = fields.Many2many(comodel_name='pos.order.line',
+    #                                  relation='contents_found',
+    #                                  column1='lot_id',
+    #                                  column2='content_id',
+    #                                  string="Received", compute="_get_posorder_ondate")
 
-    pos_delivery = fields.Many2many(comodel_name='stock.move', compute="_get_posdel_history")
-
-    @api.onchange('product_db_id')
-    def _get_posdel_history(self):
-
-        all_warehousetransfer = []
-        if self.state:
-            for a in self.state:
-                # warehouseids = int(str(a.id)[6:])
-                warehouseids = a._origin.id
-
-                all_warehousetransfer.append(warehouseids)
-
-        stock_move = self.env['stock.move'].search(
-            [("product_id", "=", self.product_db_id.id),
-             ('picking_id.picking_type_id.warehouse_id.id', 'in', all_warehousetransfer), '&',
-             ('create_date', '>=', self.from_date),
-             ('create_date', '<=', self.to_date)])
-
-        posdel_list = []
-        for line in stock_move:
-            if line.picking_id.picking_type_id.name == 'PoS Orders':
-                posdel_list.append(line.id)
-
-        self.pos_delivery = [(6, 0, posdel_list)]
-
-    pos_order_two = fields.Many2many(comodel_name='pos.order.line',
-                                     relation='contents_found',
-                                     column1='lot_id',
-                                     column2='content_id',
-                                     string="Received", compute="_get_posorder_ondate")
-
-    @api.onchange('product_db_id', 'from_date', 'to_date', 'state')
-    def _get_posorder_ondate(self):
-
-        all_warehousesale = []
-        if self.state:
-            for a in self.state:
-                # warehouseids = int(str(a.id)[6:])
-                warehouseids = a._origin.id
-                # print(warehouseids)
-
-                all_warehousesale.append(warehouseids)
-
-            # print(all_warehousesale, 'warehouse ids list sale')
-        pos_ordertwo = self.env['pos.order.line'].search(
-            [("product_id", "=", self.product_db_id.id),
-             ('order_id.picking_type_id.warehouse_id.id', 'in', all_warehousesale), '&',
-             ('create_date', '>=', self.from_date),
-             ('create_date', '<=', self.to_date)])
-        pos_two = []
-        for pos in pos_ordertwo:
-            if pos.order_id.state == 'done':
-                pos_two.append(pos.id)
-                # print(pos_two, 'pos list')
-
-        self.pos_order_two = [(6, 0, pos_two)]
+    # @api.onchange('product_db_id', 'from_date', 'to_date', 'state')
+    # def _get_posorder_ondate(self):
+    #
+    #     all_warehousesale = []
+    #     if self.state:
+    #         for a in self.state:
+    #             # warehouseids = int(str(a.id)[6:])
+    #             warehouseids = a._origin.id
+    #             # print(warehouseids)
+    #
+    #             all_warehousesale.append(warehouseids)
+    #
+    #         # print(all_warehousesale, 'warehouse ids list sale')
+    #     pos_ordertwo = self.env['pos.order.line'].search(
+    #         [("product_id", "=", self.product_db_id.id),
+    #          ('order_id.picking_type_id.warehouse_id.id', 'in', all_warehousesale), '&',
+    #          ('create_date', '>=', self.from_date),
+    #          ('create_date', '<=', self.to_date)])
+    #     pos_two = []
+    #     for pos in pos_ordertwo:
+    #         if pos.order_id.state == 'done':
+    #             pos_two.append(pos.id)
+    #             # print(pos_two, 'pos list')
+    #
+    #     self.pos_order_two = [(6, 0, pos_two)]
 
 
 
@@ -275,11 +275,11 @@ class InheritProductDashboard(models.TransientModel):
                                          column2='content_id',
                                          compute="_get_invoice_history", default=False)
 
-    posinvoice_db_ids = fields.Many2many(comodel_name='account.move.line',
-                                         relation='contents_found',
-                                         column1='lot_id',
-                                         column2='content_id',
-                                         compute="_get_invoice_history", default=False)
+    # posinvoice_db_ids = fields.Many2many(comodel_name='account.move.line',
+    #                                      relation='contents_found',
+    #                                      column1='lot_id',
+    #                                      column2='content_id',
+    #                                      compute="_get_invoice_history", default=False)
 
     @api.depends('product_db_id')
     def _get_invoice_history(self):
@@ -287,8 +287,7 @@ class InheritProductDashboard(models.TransientModel):
         account_moveline = self.env['account.move.line'].search(
             [("product_id", "=", self.product_db_id.id)])
         # print(account_moveline.product_id.name)
-        # for l in  account_moveline.move_id :
-        #     # print(l.move_type)
+
 
         invlist = []
         posinv_list = []
@@ -297,12 +296,13 @@ class InheritProductDashboard(models.TransientModel):
 
                 if inv.move_id.move_type == 'out_invoice':
                     vr = inv.move_id.payment_reference
+                    invlist.append(inv.id)
                     # print(vr)
-                    if vr[0] == 'I':
-                        # print('TRUe')
-                        invlist.append(inv.id)
-                    else:
-                        posinv_list.append(inv.id)
+                    # if vr[0] == 'I':
+                    #     # print('TRUe')
+                    #     invlist.append(inv.id)
+                    # else:
+                    #     posinv_list.append(inv.id)
 
         self.invoice_db_ids = [(6, 0, invlist)]
-        self.posinvoice_db_ids = [(6, 0, posinv_list)]
+        # self.posinvoice_db_ids = [(6, 0, posinv_list)]
