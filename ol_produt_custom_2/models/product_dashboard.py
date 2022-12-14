@@ -107,7 +107,7 @@ class CustomDashboard(models.TransientModel):
     def sub_six_months(self):
         if self.to_date:
             self.from_date = self.to_date - relativedelta(months=6)
-            print(self.from_date)
+
 
     from_date = fields.Date(string="From", default=sub_six_months)
 

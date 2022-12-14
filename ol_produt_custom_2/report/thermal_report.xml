@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<template id="ol_produt_custom_2.template_requirethermal">
+<!--<t t-name="RequireThermalReport" owl="1">-->
+     <t t-foreach="docs" t-as="s">
+        <div class="pos-receipt">
+<!--            <t t-if="s.company_id.logo">-->
+                <img class="pos-receipt-logo" t-if="s.company_id.logo"   alt="Logo"/>
+<!--                <img class="pos-receipt-logo" t-att-src="pos.company_logo_base64" alt="Logo"/>-->
+                <br/>
+<!--            </t>-->
+<!--            <t t-if="!s.company_id.logo" class="pos-receipt-center-align">-->
+<!--                <h1 t-esc="s.company_id.name"/>-->
+<!--                <h1 t-esc="s.company_id.logo"/>-->
+<!--                <br/>-->
+<!--            </t>-->
+            <br /><br />
+
+            <div class="orderlines">
+                <t t-foreach="order_line" t-as="line" t-key="line.product_id">
+                    <div class="responsive-price">
+<!--                        <t t-esc="line.product_name.substr(0,20)" />-->
+                        <span class="pos-receipt-right-align">
+<!--                            <t t-esc="Math.round(line.product_uom_qty * Math.pow(10, s.dp['Product Unit of Measure'])) / Math.pow(10, s.dp['Product Unit of Measure'])" />-->
+                            <t t-if="line.product_uom != 'Units'">
+                                <t t-esc="line.product_uom" />
+                            </t>
+                            x
+                            <t t-esc="line.price_unit" />
+                        </span>
+                    </div>
+                    <t t-if="line.discount != 0">
+                        <div class="s-receipt-left-padding">Discount: <t t-esc="line.discount" />%</div>
+                    </t>
+                </t>
+            </div>
+
+            <br/>
+            <div>------------------------</div>
+            <br/>
+
+<!--            <div>-->
+<!--                Payments:-->
+<!--            </div>-->
+<!--            <div t-foreach="payments" t-as="payment">-->
+<!--                <t t-esc="payment.name" />-->
+<!--                <span t-esc="s.format_currency_no_symbol(payment.total)" class="s-receipt-right-align"/>-->
+<!--            </div>-->
+
+            <br/>
+            <div>------------------------</div>
+            <br/>
+
+            <div>
+                Taxes:
+            </div>
+<!--            <div t-foreach="taxes" t-as="tax">-->
+<!--                <t t-esc="tax.name" />-->
+<!--                <span t-esc="s.format_currency_no_symbol(tax.tax_amount)" class="s-receipt-right-align"/>-->
+<!--            </div>-->
+
+            <br/>
+            <div>------------------------</div>
+            <br/>
+
+            <div>
+                Total:
+                <span t-esc="s.amount_total" class="pos-receipt-right-align"/>
+            </div>
+
+            <br/>
+            <div class="pos-receipt-order-data">
+                <div><t t-esc="s.date_order" /></div>
+            </div>
+        </div>
+</t>
+
+
+
+</template>
+</odoo>
