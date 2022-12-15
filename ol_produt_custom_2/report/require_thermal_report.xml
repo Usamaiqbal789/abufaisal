@@ -2,14 +2,13 @@
 <odoo>
 
 
-    <template id="ol_produt_custom_2.report_require_thermal">
-        <t t-call="web.html_container">
+  <template t-name="ol_produt_custom_2.report_require_thermal">
+       <t t-call="web.html_container">
             <t t-foreach="docs" t-as="s">
                 <div class="pos-receipt">
                     <div style="text-align: center;">
                         <t t-if="s.company_id.logo">
-                            <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" height="250"
-                                 width="50%" alt="Logo"/>
+                            <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" height="150" width="30%" alt="Logo"/>
                         </t>
                         <t t-else="">
                             <h2 class="pos-receipt-center-align">
@@ -20,15 +19,15 @@
                     </div>
                     <br/>
                     <br/>
-                    <table style=" width: 100%; font-size: 22px;">
+                    <table style=" width: 100%; font-size: 18px;">
                         <tbody>
                             <tr>
 
-                                <td style="width: 50%;padding-left:4px;">
+                                <td style="width: 50%;height:5px;padding-left:4px;vertical-align:top;">
                                     <strong>Customer:</strong>
                                     <span style="padding-left:4px;" t-field="s.partner_id.name"/>
                                 </td>
-                                <td style="width: 50%;">
+                                <td style="width: 50%;height:5px;vertical-align:top;">
 
                                     <strong style="padding-left:2px;">Order#:</strong>
                                     <span style="padding-left:4px;" t-field="s.name"/>
@@ -37,11 +36,11 @@
                             </tr>
                             <tr>
 
-                                <td style="width: 50%;padding-left:4px;">
+                                <td style="width: 50%;padding-left:4px;vertical-align:top;">
                                     <strong>Created by:</strong>
                                     <span style="padding-left:4px;" t-field="s.user_id.name"/>
                                 </td>
-                                <td style="width: 50%;">
+                                <td style="width: 50%;vertical-align:top;">
 
                                     <strong style="padding-left:2px;">Date:</strong>
                                     <span style="padding-left:4px;" t-field="s.date_order"/>
@@ -50,42 +49,11 @@
                             </tr>
                         </tbody>
                     </table>
-<!--                    <div class="pos-receipt-contact" style="font-size: 22px;">-->
 
-
-<!--                        &lt;!&ndash;                      <div class="row">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        <div class="col-6">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                      <div >Order Date:<span   t-field="s.date_order"/></div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                          < class="col-6">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    <b>Order No: <span   t-field="s.name"/></>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                         </div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                          </div>&ndash;&gt;-->
-
-
-<!--                        <div style="text-align: left;padding-left: 135px;">Customer:-->
-<!--                            <span t-field="s.partner_id.name"/>-->
-<!--                        </div>-->
-
-
-<!--                        <t t-if="s.user_id.name">-->
-<!--                            <div class="cashier">-->
-<!--                                <div style="text-align: left;padding-left: 135px;">-->
-<!--                                    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<!--                                </div>-->
-<!--                                <div style="text-align: left;padding-left: 135px;">Served by :-->
-<!--                                    <t t-esc="s.user_id.name"/>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-
-<!--                        </t>-->
-
-<!--                    </div>-->
                     <br/>
                     <br/>
                     <div class="orderlines">
-                        <table style="font-size: 26px;border-collapse: collapse;">
+                        <table style="font-size: 20px;border-collapse: collapse;">
                             <t t-foreach="docs.order_line" t-as="t">
                                 <tr>
                                     <td>
@@ -114,7 +82,7 @@
                                     <td><span t-field="t.product_uom_qty"/>PCs X
                                         <span t-field="t.price_unit"/>
                                     </td>
-                                    <td style="padding-left:200px;">
+                                    <td style="padding-left:170px;">
                                         <t t-set="total_price" t-value="t.price_subtotal* t.product_uom_qty"/>
                                         <span>
                                             <t t-esc="total_price"/>
@@ -127,7 +95,7 @@
                                     </td>
                                 </tr>
                                 <tr style="width:100%;border-top: 1px solid;border-color: grey;">
-                                    <td></td><td></td>
+                                    <td/><td/>
 
                                 </tr>
 
@@ -135,17 +103,14 @@
                             </t>
 
                             <tr>
-                                <td style="padding-left:200px;">
-<!--                                    <tr>-->
-<!--                                        <td></td>-->
-<!--&lt;!&ndash;                                        <td style="padding-left:200px;" class="pos-receipt-right-align">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</td>&ndash;&gt;-->
-<!--                                    </tr>-->
+                                <td style="padding-left:170px;">
+
 
                                     <tr>
                                         <td>
                                             <span>Subtotal</span>
                                         </td>
-                                        <td style="padding-left:200px;">
+                                        <td style="padding-left:98px;">
                                             <span t-field="s.amount_untaxed"/>
                                         </td>
 
@@ -159,7 +124,7 @@
                                     <span>Taxes</span>
                                 </td>
 
-                                <td style="padding-left:200px;">
+                                <td style="padding-left:170px;">
                                     <span>
                                         <t t-esc="s.amount_tax"/>
                                     </span>
@@ -169,16 +134,16 @@
                             <tr>
                                 <td style="padding-left:200px;">
                                     <tr>
-                                        <td></td>
-                                        <td style="padding-left:200px;" class="pos-receipt-right-align">--------</td>
+                                        <td/>
+                                        <td style="padding-left:98;" class="pos-receipt-right-align">----------------</td>
                                     </tr>
 
                                     <tr>
                                         <td>
                                             <span style="padding-left:200px;font-size:35px;">Total</span>
                                         </td>
-                                        <td style="padding-left:200px;">
-                                            <span style="font-size:28px;" t-field="s.amount_total"/>
+                                        <td style="padding-left:98px;">
+                                            <strong><span style="font-size:20px;" t-field="s.amount_total"/></strong>
                                         </td>
                                     </tr>
                                 </td>
@@ -188,31 +153,29 @@
                     </div>
                 </div>
 
-                <br/>
-                <!--                      <div class="after-footer" style="font-size: 26px">-->
+                <!--<br/>-->
 
-                <!--            <br/>-->
-                <!--               <div class="pos-receipt-amount">-->
-                <!--                  <span  style="padding-left:190px;" t-field="s.name"/>-->
-                <!--                </div>-->
-                <!--                 <div class="pos-receipt-amount">-->
-                <!--                  <span  style="padding-left:140px;" t-field="s.date_order"/>-->
-                <!--                </div>-->
+                <!--<br/>-->
+                <!--<br/>-->
+                <!--<br/>-->
+                <!--<br/>-->
 
-                <!--   </div>-->
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                 <table style="width: 100%;font-size:22px;border-top: 1px solid ;border-color: grey;position: fixed;padding-top:28px;" class="footer" >
+
+
+                 <table style="width:100%;font-size:18px;border-top: 1px solid ;border-color: grey;margin-top:369px;position:fixed" class="footer">
                         <tbody>
                             <tr>
 
-                                <td style="width: 50%;padding-left:4px;font-size:22px;">
+                                <td style="width: 50%;padding-left:4px;vertical-align:top;">
+                                   <t t-if="s.company_id.website">
 
-                                    <span  t-field="s.company_id.street"/>
+                                   <t t-esc="s.company_id.website"/>
+
+                                   </t>
+
+
                                 </td>
-                               <td style="width: 50%;padding-left:40px;font-size:22px;">
+                               <td style="width: 50%;padding-left:40px;vertical-align:top;">
 
                                    <span t-field="s.company_id.phone"/>
                                 </td>
@@ -220,55 +183,29 @@
                             </tr>
                             <tr>
 
-                                <td style="width: 50%">
+                                <td style="width: 50%;vertical-align:top;">
 
                                     <t t-if="s.company_id.email">
-<!--                        <div>-->
+
                             <t t-esc="s.company_id.email"/>
-<!--                        </div>-->
+
                             </t>
                                  </td>
-                                <td style="width: 50%;padding-left:40px;">
+                                <td style="width: 50%;padding-left:40px;vertical-align:top;">
 
-<!--                                    <strong style="padding-left:2px;">Date:</strong>-->
-                                     <t t-if="s.company_id.website">
-<!--                        <div>-->
-                            <t t-esc="s.company_id.website"/>
-<!--                        </div>-->
-                    </t>
+
+                                      <t t-if="s.company_id.street">
+
+                                   <t t-esc="s.company_id.street"/>
+
+                                   </t>
                                </td>
 
                             </tr>
                         </tbody>
                     </table>
 
-
-
-<!--                <div class="pos-receipt-contact" style="text-align: center;font-size: 22px;">-->
-<!--                    <t t-if="s.company_id.street">-->
-<!--                        <div>-->
-<!--                            <t t-esc="s.company_id.street"/>-->
-<!--                        </div>-->
-<!--                    </t>-->
-<!--                    <t t-if="s.company_id.phone">-->
-<!--                        <div>Tel:-->
-<!--                            <t t-esc="s.company_id.phone"/>-->
-<!--                        </div>-->
-<!--                    </t>-->
-
-<!--                    <t t-if="s.company_id.email">-->
-<!--                        <div>-->
-<!--                            <t t-esc="s.company_id.email"/>-->
-<!--                        </div>-->
-<!--                    </t>-->
-<!--                    <t t-if="s.company_id.website">-->
-<!--                        <div>-->
-<!--                            <t t-esc="s.company_id.website"/>-->
-<!--                        </div>-->
-<!--                    </t>-->
-<!--                </div>-->
-
-            </t>
         </t>
-    </template>
+        </t>
+  </template>
 </odoo>
