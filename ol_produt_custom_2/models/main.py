@@ -189,7 +189,7 @@ class AccountmoveINherit(models.Model):
 
 
 
-        appendableProducts = [i for i in all_product if i != self.id]
+        appendableProducts = [i for i in all_product if i != self.ids[0]]
         self.write({"alternative_products": [(6, 0, appendableProducts)]})
 
 
