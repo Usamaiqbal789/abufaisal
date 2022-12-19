@@ -22,7 +22,7 @@
         'views/group_product.xml',
         'report/report_view.xml',
         'report/require_thermal_report.xml',
-        'report/inheritexternal_layout.xml',
+        # 'report/inheritexternal_layout.xml',
 
 
 
