@@ -414,9 +414,11 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='alternative_products']" position="after">
-<!--                    <group>-->
-                 <button name="commit_alternativeproducts" type="object" string="Commit Alternate Products" class="oe_highlight"/>
-<!--                   </group>-->
+                     <button name="commit_alternativeproducts" type="object" string="Add Product" class="oe_highlight"/>
+                
+                 <br/>
+                 <br/>
+
                 </xpath>
 
             </field>
