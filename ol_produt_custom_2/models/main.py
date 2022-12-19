@@ -66,6 +66,10 @@ class AccountmoveINherit(models.Model):
         result = super(AccountmoveINherit, self).create(vals)
         return result
 
+
+
+
+
     @api.depends('group_product_ids', 'group_product_ids.grp_id')
     def _group_comp(self):
         g_ids=[]
@@ -151,92 +155,88 @@ class AccountmoveINherit(models.Model):
 
     alternate_product_warning=fields.Char("Warning")
     alternate_product_warning_show=fields.Char("Warning_show",default=False)
-    @api.onchange('alternative_products','alternative_products.default_code')
-    def check_alternat_product(self):
-        # var = self.env['product.product'].search(['id','=',self.alternative_products.ids])
-        # raise ValidationError(var)
+    def commit_alternativeproducts(self):
+        # @api.onchange('alternative_products', 'alternative_products.default_code')
+        # def check_alternat_product(self):
         all_product = self.alternative_products.ids
+        print(all_product, 'old alternative product list')
 
         self.alternate_product_warning_show = False
         self.alternate_product_warning = ""
 
-        thisid=0
+        thisid = 0
         try:
-            thisid=int(self.id)
-        except :
+            thisid = int(self.id)
+
+        except:
             # raise ValidationError(self.id)
             try:
-                thisid=int(str(self.id)[6:])
+                thisid = int(str(self.id)[6:])
+                print(thisid, 'self id')
+
             except:
-                self.alternate_product_warning_show=True
-                self.alternate_product_warning="You cannot add alternate products without saving this product. Please save this product first and then try again."
+                self.alternate_product_warning_show = True
+                self.alternate_product_warning = "You cannot add alternate products without saving this product. Please save this product first and then try again."
                 self.write({"alternative_products": [(6, 0, [])]})
                 return
-        all_product.append(thisid)
 
+        all_product.append(thisid)
+        print(all_product, 'all_product')
 
         altproducts = self.env['product.product'].search([('id', 'in', all_product)])
+
         for altproduct in altproducts:
+
+            print(altproduct)
             for id in altproduct.alternative_products.ids:
+                print(id, 'alternative product of old product list')
+
                 if id not in all_product:
                     all_product.append(id)
+            print(all_product, 'list')
 
         altproducts = self.env['product.product'].search([('id', 'in', all_product)])
 
         for altproduct in altproducts:
-            appendableProducts=[i for i in all_product if i!=altproduct.id]
-            altproduct.write({"alternative_products":[(6, 0, appendableProducts)]})
+            print("print", altproduct.id, self.ids)
+            appendableProducts = [i for i in all_product if i != altproduct.id]
 
-
+            altproduct.write({"alternative_products": [(6, 0, appendableProducts)]})
+        # print(self.alternative_products)
 
         appendableProducts = [i for i in all_product if i != self.ids[0]]
+        # print(appendableProducts)
         self.write({"alternative_products": [(6, 0, appendableProducts)]})
 
 
-    # @api.onchange('product_db_id')
-    # def send_comment(self):
-    #     print('hello comment')
-    #     comments_line = self.env['product.dashboard'].search([('product_db_id', '=', self.id)])
-    #     # for i in comments_line:
-    #     print(comments_line.id, 'notes')
-    #     print(comments_line.curr_user, 'current user')
-    #     if comments_line.product_dashboard_notes_ids:
-    #         for lines in comments_line.product_dashboard_notes_ids:
-    #             vlas = {
-    #                 'current_user': lines.curr_user,
-    #                 'current_date': lines.curr_date,
-    #                 'des': lines.des,
-    #
-    #             }
-    #             notes = self.env['product.notes.line'].write(vlas)
-    #             print(notes)
 
-        # for i in
 
-    # @api.depends('group_product_ids', 'group_product_ids.grp_id')
-    # def set_domain_sub_grp(self):
-    #
-    #     # self.group_product_ids.grp_id = False
-    #     for g in self.group_product_ids:
-    #         if g.grp_id:
-    #             return {'domain': {'sub_grp_id': [('grp_id', 'in', g.grp_id.id)]}}
-    #
-    #     else:
-    #         # remove the domain if no grp is selected
-    #         return {'domain': {'sub_grp_id': []}}
-    #
-    # @api.depends('group_product_ids', 'group_product_ids.sub_grp_id')
-    # def set_domain_sub_sub_grp(self):
-    #
-    #     # self.group_product_ids.sub_grp_id = False
-    #     for g in self.group_product_ids:
-    #         # if self.group_product_ids:
-    #         if g.sub_grp_id:
-    #             return {'domain': {'sub_sub_grp_id': [('sub_grp_id', 'in', g.sub_grp_id.id)]}}
-    #
-    #     else:
-    #         # remove the domain if no contrat is selected
-    #         return {'domain': {'sub_sub_grp_id': []}}
+
+
+    def delete_product(self):
+
+        product_ls=[]
+
+        if self:
+            print(self.id,'line id')
+            for i in self.alternative_products.ids:
+                alternative_products = self.env['product.product'].search([('id', '=', i)])
+                for y in alternative_products.alternative_products.ids:
+                    if y == self.id :
+                        alternative_products.write({
+                            'alternative_products': [(3, y)]
+                        })
+
+
+                        self.write({
+                            'alternative_products': [(3, i)]
+                        })
+
+    def add_alternativeproduct(self):
+        print('hello')
+
+
+
 
 
 class Brandsclass(models.Model):

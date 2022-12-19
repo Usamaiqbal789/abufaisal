@@ -289,6 +289,8 @@
                     <div style="margin-right: 150px;float:left">
                         <group name="brand">
                             <field name="brand_id"/>
+
+
                         </group>
                     </div>
 
@@ -339,15 +341,19 @@
                         </tree>
                     </field>
 
+
                      <h5 style="color:##545254;text-align: center;">Alternative Product Table</h5>
 
                     <field name="alternative_products" nolabel="1" colspan="4" widget="one2many_list">
-                        <tree editable="bottom" order="name">
+                        <tree editable="bottom" create="false" delete="false">
+<!--                            <button name="delete_product" type="object" string="Delete" class="oe_highlight"/>-->
                             <field name="default_code" string="Part NO"/>
                             <field name="name"/>
                             <field name="lst_price"/>
+
                         </tree>
                     </field>
+
                 </xpath>
                 <xpath expr="//field[@name='uom_po_id']" position="after">
                     <field name="oem_code"/>
@@ -400,6 +406,22 @@
             </field>
         </record>
 
+
+         <record model="ir.ui.view" id="view_inherit_product_form_for_button">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='alternative_products']" position="after">
+<!--                    <group>-->
+                 <button name="commit_alternativeproducts" type="object" string="Commit Alternate Products" class="oe_highlight"/>
+<!--                   </group>-->
+                </xpath>
+
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="view_inherit_product_product_search_panel_in_tree_view">
             <field name="name">product.product.form.search</field>
             <field name="model">product.product</field>
@@ -444,10 +466,7 @@
                         <field name="type" string="Type"/>
                         <field name="cus_warehouse_id" invisible="1"/>
                     </group>
-
-
                 </xpath>
-
             </field>
         </record>
 

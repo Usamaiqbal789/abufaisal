@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="inherit_external_layout_back" inherit_id="web.external_layout_background">
+<!--          <xpath expr="//div[@class='header']" position="replace">-->
+
+
+
+<!--                <div class="header">-->
+
+
+
+<!--                    <div style="text-align: center;">-->
+<!--                        <t t-if="s.company_id.logo">-->
+<!--                            <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" height="150" width="30%" alt="Logo"/>-->
+<!--                        </t>-->
+<!--                        <t t-else="">-->
+<!--                            <h2 class="pos-receipt-center-align">-->
+<!--                                <t t-esc="s.company_id.name"/>-->
+<!--                            </h2>-->
+
+<!--                        </t>-->
+<!--                    </div>-->
+
+
+
+<!--                </div>-->
+
+
+
+<!--            </xpath>-->
+
+
+
+
+    </template>
+
+
+</odoo>
