@@ -18,7 +18,7 @@
         'views/custom_dashboard.xml',
         'views/ol_pdc.xml',
         'data/sequence.xml',
-        'data/alternative_product-cron.xml',
+        # 'data/alternative_product-cron.xml',
         'views/group_product.xml',
         'report/report_view.xml',
         'report/require_thermal_report.xml',
