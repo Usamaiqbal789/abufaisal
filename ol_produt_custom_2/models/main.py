@@ -159,29 +159,30 @@ class AccountmoveINherit(models.Model):
         # @api.onchange('alternative_products', 'alternative_products.default_code')
         # def check_alternat_product(self):
         all_product = self.alternative_products.ids
-        print(all_product, 'old alternative product list')
+        
 
-        self.alternate_product_warning_show = False
-        self.alternate_product_warning = ""
+        # self.alternate_product_warning_show = False
+        # self.alternate_product_warning = ""
 
-        thisid = 0
-        try:
-            thisid = int(self.id)
+        # thisid = 0
+        # try:
+        #     thisid = int(self.id)
 
-        except:
-            # raise ValidationError(self.id)
-            try:
-                thisid = int(str(self.id)[6:])
-                print(thisid, 'self id')
+        # except:
+        #     # raise ValidationError(self.id)
+        #     try:
+        #         thisid = int(str(self.id)[6:])
+        #         print(thisid, 'self id')
 
-            except:
-                self.alternate_product_warning_show = True
-                self.alternate_product_warning = "You cannot add alternate products without saving this product. Please save this product first and then try again."
-                self.write({"alternative_products": [(6, 0, [])]})
-                return
+        #     except:
+        #         self.alternate_product_warning_show = True
+        #         self.alternate_product_warning = "You cannot add alternate products without saving this product. Please save this product first and then try again."
+        #         self.write({"alternative_products": [(6, 0, [])]})
+        #         return
+        form_id=self._origin.id
 
-        all_product.append(thisid)
-        print(all_product, 'all_product')
+        all_product.append(form_id)
+       
 
         altproducts = self.env['product.product'].search([('id', 'in', all_product)])
 
@@ -189,11 +190,11 @@ class AccountmoveINherit(models.Model):
 
             print(altproduct)
             for id in altproduct.alternative_products.ids:
-                print(id, 'alternative product of old product list')
+                
 
                 if id not in all_product:
                     all_product.append(id)
-            print(all_product, 'list')
+           
 
         altproducts = self.env['product.product'].search([('id', 'in', all_product)])
 
@@ -202,10 +203,10 @@ class AccountmoveINherit(models.Model):
             appendableProducts = [i for i in all_product if i != altproduct.id]
 
             altproduct.write({"alternative_products": [(6, 0, appendableProducts)]})
-        # print(self.alternative_products)
+       
 
         appendableProducts = [i for i in all_product if i != self.ids[0]]
-        # print(appendableProducts)
+       
         self.write({"alternative_products": [(6, 0, appendableProducts)]})
 
 
