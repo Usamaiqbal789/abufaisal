@@ -209,7 +209,7 @@
 
 
         <!--part family-->
-        <record id="parts_family_form_ar" model="ir.ui.view">
+        <!-- <record id="parts_family_form_ar" model="ir.ui.view">
             <field name="name">parts.family.view.form</field>
             <field name="model">parts.family</field>
             <field name="arch" type="xml">
@@ -240,16 +240,16 @@
                 </tree>
 
             </field>
-        </record>
+        </record> -->
 
 
 
-        <record id="action_parts_family_ar" model="ir.actions.act_window">
+        <!-- <record id="action_parts_family_ar" model="ir.actions.act_window">
             <field name="name">Parts Family</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">parts.family</field>
             <field name="view_mode">tree,kanban,form</field>
-        </record>
+        </record> -->
 
 
 
@@ -261,7 +261,7 @@
         <menuitem id="menu_action_ar_5" name="Brand" parent="menu_action_ar" action="form_credent_5" />
 
         <menuitem id="menu_action_product_make_type" name="Product Make Type" parent="menu_action_ar" action="action_view_product_make_type_ar" />
-        <menuitem id="menu_action_part_family" name="Parts Family" parent="menu_action_ar" action="action_parts_family_ar" />
+        <!-- <menuitem id="menu_action_part_family" name="Parts Family" parent="menu_action_ar" action="action_parts_family_ar" /> -->
 
 
 
