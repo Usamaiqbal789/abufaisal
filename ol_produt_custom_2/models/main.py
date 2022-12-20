@@ -27,7 +27,7 @@ class AccountmoveINherit(models.Model):
     sub_grp_id = fields.Many2many('sub.group.custom', string="Sub Group" ,compute='_sub_group_comp', store=True)
     sub_sub_grp_id = fields.Many2many('sub.sub.group.custom', string="Sub Sub Group",compute='_sub_sub_group_comp', store=True)
     product_make_type_id = fields.Many2one('product.make.type', string="Product Make Type")
-    # parts_family_id = fields.Many2one('parts.family',  string="Parts Family")
+    parts_family_id = fields.Many2one('parts.family',  string="DEf")
     attachment_ids = fields.Many2many('ir.attachment',
                                       string='Files')
     oem_code = fields.Char('OEM Code')
@@ -42,10 +42,10 @@ class AccountmoveINherit(models.Model):
 
     part_num = fields.Char('Part Number')
     part_name = fields.Char('Part Name')
-    # part_family = fields.Selection(
-    #     [('engine', 'Engine'), ('body', 'Body'), ('electrical', 'Electrical'), ('cooling', 'Cooling'), ('transmission', 'Transmission')],
-    #     string='Parts Family',
-    #     default='')
+    part_family = fields.Selection(
+        [('engine', 'Engine'), ('body', 'Body'), ('electrical', 'Electrical'), ('cooling', 'Cooling'), ('transmission', 'Transmission')],
+        string='ABC',
+        default='')
     des_arabic = fields.Char('Description in Arabic')
     min_unit_price = fields.Float('Min Unit Price')
     alternative_products = fields.Many2many(
