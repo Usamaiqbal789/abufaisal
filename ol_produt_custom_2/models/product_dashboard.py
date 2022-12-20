@@ -101,7 +101,7 @@ class CustomDashboard(models.TransientModel):
     logs_description = fields.Char('Description')
     logs_price = fields.Char('Price')
     logs_partner_id = fields.Many2one('res.partner', string='Customer')
-    dashboard_logs_ids = fields.Many2many('dasboard.logs', string='Dashboard Logs')
+    dashboard_logs_ids = fields.Many2many('dasboard.logs', string='Dashboard Logs', compute='add_log_ids_dash')
 
     @api.onchange('to_date')
     def sub_six_months(self):
@@ -115,7 +115,7 @@ class CustomDashboard(models.TransientModel):
     def add_log_ids_dash(self):
         logs=self.env['dasboard.logs'].search([('product_id','=',self.product_db_id.id)])
         self.dashboard_logs_ids=logs
-    add_log_id = fields.Many2many(comodel_name='add.log')
+    # add_log_id = fields.Many2many(comodel_name='add.log')
 
 
     @api.onchange('product_db_id')
@@ -294,11 +294,11 @@ class CustomDashboard(models.TransientModel):
 
     def action_refresh(self):
 
-        def add_log_ids_dash():
-            logs = self.env['dasboard.logs'].search([('product_id', '=', self.product_db_id.id)])
-            self.dashboard_logs_ids = logs
+        # def add_log_ids_dash():
+        #     logs = self.env['dasboard.logs'].search([('product_id', '=', self.product_db_id.id)])
+        #     self.dashboard_logs_ids = logs
 
-        add_log_id = fields.Many2many(comodel_name='add.log')
+        # add_log_id = fields.Many2many(comodel_name='add.log')
 
 
 
@@ -428,20 +428,20 @@ class CustomDashboard(models.TransientModel):
                 if po.ids:
                     self.avg_purchase_cost = cost_sum / len(po.ids)
 
-            def addlogs():
+            # def addlogs():
 
-                if self.product_db_id:
-                    self.write({
-                        "dashboard_logs_ids": [(0, 0, {
-                            'product_id': self.product_db_id.id,
-                            'description': self.logs_description,
-                            'user_id': self.env.user.id,
-                            'price': self.logs_price,
-                            'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
-                        })]
-                    })
-                else:
-                    raise UserError("Select Product First")
+            #     if self.product_db_id:
+            #         self.write({
+            #             "dashboard_logs_ids": [(0, 0, {
+            #                 'product_id': self.product_db_id.id,
+            #                 'description': self.logs_description,
+            #                 'user_id': self.env.user.id,
+            #                 'price': self.logs_price,
+            #                 'partner_id': self.logs_partner_id.id if self.logs_partner_id else False
+            #             })]
+            #         })
+            #     else:
+            #         raise UserError("Select Product First")
 
 
 
